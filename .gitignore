@@ -1,4 +1,9 @@
 .env
 
+.vscode
+
 # Composer
 /vendor/
+
+# PHPUnit
+.phpunit.result.cache
