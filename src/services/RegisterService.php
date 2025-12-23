@@ -18,6 +18,11 @@ class RegisterService
         return empty($this->errores);
     }
 
+    public function hash($contrasena)
+    {
+        return password_hash($contrasena, PASSWORD_BCRYPT);;
+    }
+
     public function getErrores()
     {
         return $this->errores;

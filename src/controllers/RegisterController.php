@@ -24,9 +24,10 @@ class RegisterController {
             $email = $_POST['email'];
             
             $isValido = $this->service->validar($nombre, $email);
-            
             if ($isValido) {
-                $this->repo->saveUser($nombre, $contrasena, $email);
+                $hashedContrasena = $this->service->hash($contrasena);
+                $rolId = $this->repo->findRolIdByName("user");
+                $this->repo->saveUser($nombre, $email, $hashedContrasena, $rolId);
                 header('Location: login.php');
                 exit;
             } else { // Si hay errores

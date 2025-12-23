@@ -6,6 +6,8 @@ session_start();
 
 require __DIR__ . '/../../vendor/autoload.php';
 
+use App\Models\UserModel;
+
 class LoginController {
     private $service;
     private $repo;
@@ -21,11 +23,12 @@ class LoginController {
         if (isset($_POST['login'])) {
             $userName = $_POST['userName'];
             $password = $_POST['password'];
-            $hashedPassword = $this->repo->findPasswordByUsername($userName);
+            $user = $this->repo->findByUsername($userName);
             
-            $isValido = $this->service->validar($userName, $password, $hashedPassword);
+            $isValido = $this->service->validar($userName, $password, $user->getContrasena());
             if ($isValido) {
-                // TODO: iniciar sesión e ir a index
+                $_SESSION['isLogged'] = true;
+                $_SESSION['rol'] = $user->getRol();
                 header('Location: index.php');
                 exit;
             } else { // Si hay errores

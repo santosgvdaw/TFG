@@ -9,6 +9,9 @@ class RegisterView extends BaseView
         return "Registro";
     }
 
+    // El registro no necesita cabecera
+    protected function getHeader() {}
+
     protected function getScript()
     {
         return "register.js";
