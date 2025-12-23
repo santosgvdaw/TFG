@@ -7,6 +7,9 @@ class LoginView extends BaseView {
         return "Login";
     }
 
+    // El login no necesita cabecera
+    protected function getHeader() {}
+
     protected function getScript(){
         return "login.js";
     }
