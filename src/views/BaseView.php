@@ -39,6 +39,14 @@ abstract class BaseView
                 </svg>
                 Categorías
             </a>
+            <a href='ubicaciones.php' class='btn btn-primary'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-map-pin">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+                    <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
+                </svg>
+                Ubicaciones
+            </a>
         </div>
         <div class="col-md-3 text-end">
             <?php if ($this->isLogged) { ?>
@@ -99,7 +107,7 @@ abstract class BaseView
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title><?= $this->getTitle() ?></title>
-            <link href="bootstrap.min.v5.3.8.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+            <link href="bootstrap.min.v5.3.8.css" rel="stylesheet" integrity="sha384-vt87vjrIEEfJX9vGHpIbioSQQd3ud5HqwGyQHSsaDskGhAqu+OkhhJ74Hn+PQilp" crossorigin="anonymous">
             <script src="<?= $this->getScript() ?>" defer></script>
         </head>
 
