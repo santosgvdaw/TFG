@@ -40,7 +40,7 @@ class Database
     {
         $stmt = $this->con->prepare($sql);
         $stmt->execute($params);
-        return $stmt->fetch(PDO::FETCH_OBJ);
+        return $stmt->fetch();
     }
 
     // Ejecuta una consulta preparada y devuelve todos los registros
@@ -48,13 +48,13 @@ class Database
     {
         $stmt = $this->con->prepare($sql);
         $stmt->execute($params);
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $stmt->fetchAll();
     }
 
     // Ejecuta una consulta y devuelve todos los registros
     public function queryAll(string $sql)
     {
         $stmt = $this->con->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        return $stmt->fetchAll();
     }
 }
