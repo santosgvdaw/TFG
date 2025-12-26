@@ -29,6 +29,16 @@ abstract class BaseView
                 </svg>
                 Ejemplares
             </a>
+            <a href='categorias.php' class='btn btn-primary'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-category">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M4 4h6v6h-6z" />
+                    <path d="M14 4h6v6h-6z" />
+                    <path d="M4 14h6v6h-6z" />
+                    <path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
+                </svg>
+                Categorías
+            </a>
         </div>
         <div class="col-md-3 text-end">
             <?php if ($this->isLogged) { ?>
@@ -89,8 +99,7 @@ abstract class BaseView
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title><?= $this->getTitle() ?></title>
-            <link href="bootstrap.min.v5.3.3.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-            <link rel="stylesheet" href="fontawesome.all.v6.7.2.css" integrity="sha384-nRgPTkuX86pH8yjPJUAFuASXQSSl2/bBUiNV47vSYpKFxHJhbcrGnmlYpYJMeD7a" crossorigin="anonymous">
+            <link href="bootstrap.min.v5.3.8.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
             <script src="<?= $this->getScript() ?>" defer></script>
         </head>
 

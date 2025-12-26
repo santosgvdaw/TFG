@@ -14,14 +14,14 @@ class UserModel {
 
     public function __construct($data)
     {
-        $this->id = $data->id;
-        $this->nombre = $data->nombre;
-        $this->rol = $data->rol;
-        $this->correo = $data->correo;
-        $this->contrasena = $data->contrasena;
-        $this->fechaCreacion = $data->fechaCreacion;
-        $this->fechaActualizacion = $data->fechaActualizacion;
-        $this->concurrencia = $data->concurrencia;
+        $this->id = $data['id'];
+        $this->nombre = $data['nombre'];
+        $this->rol = $data['rol'];
+        $this->correo = $data['correo'];
+        $this->contrasena = $data['contrasena'];
+        $this->fechaCreacion = $data['fecha_creacion'];
+        $this->fechaActualizacion = $data['fecha_actualizacion'];
+        $this->concurrencia = $data['concurrencia'];
     }
 
     public function getId() {
