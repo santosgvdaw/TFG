@@ -19,3 +19,27 @@ INSERT INTO ALMACEN_DB.Categorias (nombre             , fecha_creacion, fecha_ac
                                   ('Cuidado del Hogar', CURDATE()     , CURDATE()          , 0           ),
                                   ('Manualidades'     , CURDATE()     , CURDATE()          , 0           ),
                                   ('Videojuegos'      , CURDATE()     , CURDATE()          , 0           );
+
+-- Nomenclatura de ejemplo para los nombre de las ubicaciones:
+-- PXEY -> Planta X Estante Y
+INSERT INTO ALMACEN_DB.Ubicaciones (nombre , fecha_creacion, fecha_actualizacion, concurrencia)
+                            VALUES ('P1E1' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P1E2' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P1E3' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P1E4' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P1E5' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P2E1' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P2E2' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P2E3' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P2E4' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P2E5' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P3E1' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P3E2' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P3E3' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P3E4' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P3E5' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P4E1' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P4E2' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P4E3' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P4E4' , CURDATE()     , CURDATE()          , 0           ),
+                                   ('P4E5' , CURDATE()     , CURDATE()          , 0           );

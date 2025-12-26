@@ -6,7 +6,7 @@ class UbicacionModel
 {
     private $id;
     private $nombre;
-    private $fechaEntrada;
+    private $fechaCreacion;
     private $fechaActualizacion;
     private $concurrencia;
 
@@ -14,8 +14,8 @@ class UbicacionModel
     {
         $this->id = $data["id"];
         $this->nombre = $data["nombre"];
-        $this->fechaEntrada = $data["fechaEntrada"];
-        $this->fechaActualizacion = $data["fechaActualizacion"];
+        $this->fechaCreacion = $data["fecha_creacion"];
+        $this->fechaActualizacion = $data["fecha_actualizacion"];
         $this->concurrencia = $data["concurrencia"];
     }
 
@@ -29,9 +29,9 @@ class UbicacionModel
         return $this->nombre;
     }
 
-    public function getFechaEntrada()
+    public function getFechaCreacion()
     {
-        return $this->fechaEntrada;
+        return $this->fechaCreacion;
     }
 
     public function getFechaActualizacion()
