@@ -32,7 +32,7 @@ class ActualizarUbicacionView extends BaseView
             <input type="hidden" class="form-control" name="id" id="id" value="<?= $this->ubicacion->getId() ?>" />
             <div class="row mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" name="nombre" id="nombre" value="<?= $this->ubicacion->getNombre() ?>" />
+                <input type="text" class="form-control" name="nombre" id="nombre" value="<?= htmlspecialchars($this->ubicacion->getNombre()) ?>" />
             </div>
             <div class="row mb-3 d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary col" name="actualizar" style="max-width:130px;">Actualizar Ubicación</button>

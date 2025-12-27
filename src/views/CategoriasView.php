@@ -66,7 +66,7 @@ class CategoriasView extends BaseView
                         <?php foreach ($this->categorias as $categoria) { ?>
                             <tr class="text-center">
                                 <td><?= $categoria->getId() ?></td>
-                                <td><?= $categoria->getNombre() ?></td>
+                                <td><?= htmlspecialchars($categoria->getNombre()) ?></td>
                                 <td><?= $categoria->getFechaCreacion() ?></td>
                                 <td><?= $categoria->getFechaActualizacion() ?></td>
                                 <?php if ($this->isLogged && $this->rol == 'admin') { ?>

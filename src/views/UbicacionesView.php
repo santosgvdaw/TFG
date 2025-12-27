@@ -66,7 +66,7 @@ class UbicacionesView extends BaseView
                         <?php foreach ($this->ubicaciones as $ubicacion) { ?>
                             <tr class="text-center">
                                 <td><?= $ubicacion->getId() ?></td>
-                                <td><?= $ubicacion->getNombre() ?></td>
+                                <td><?= htmlspecialchars($ubicacion->getNombre()) ?></td>
                                 <td><?= $ubicacion->getFechaCreacion() ?></td>
                                 <td><?= $ubicacion->getFechaActualizacion() ?></td>
                                 <?php if ($this->isLogged && $this->rol == 'admin') { ?>
