@@ -6,9 +6,10 @@ class ProductoModel
 {
     private $id;
     private $nombre;
+    private $categoria;
     private $descripcion;
     private $stockMinimo;
-    private $nombreUbicacion;
+    private $stockActual;
     private $fechaCreacion;
     private $fechaActualizacion;
     private $concurrencia;
@@ -17,9 +18,10 @@ class ProductoModel
     {
         $this->id = $data['id'];
         $this->nombre = $data['nombre'];
+        $this->categoria = $data['categoria'];
         $this->descripcion = $data['descripcion'];
         $this->stockMinimo = $data['stock_minimo'];
-        $this->nombreUbicacion = $data['nombre_ubicacion'];
+        $this->stockActual = $data['stock_actual'];
         $this->fechaCreacion = $data['fecha_creacion'];
         $this->fechaActualizacion = $data['fecha_actualizacion'];
         $this->concurrencia = $data['concurrencia'];
@@ -35,6 +37,11 @@ class ProductoModel
         return $this->nombre;
     }
 
+    public function getCategoria()
+    {
+        return $this->categoria;
+    }
+
     public function getDescripcion()
     {
         return $this->descripcion;
@@ -45,12 +52,12 @@ class ProductoModel
         return $this->stockMinimo;
     }
 
-    public function getNombreUbicacion()
+    public function getStockActual()
     {
-        return $this->nombreUbicacion;
+        return $this->stockActual;
     }
 
-    public function getFechaEntrada()
+    public function getFechaCreacion()
     {
         return $this->fechaCreacion;
     }
