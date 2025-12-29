@@ -48,6 +48,7 @@ class EjemplaresView extends BaseView
                         <col span="1" style="width: 50%;">
                         <col span="1" style="width: 50%;">
                         <col span="1" style="width: 50%;">
+                        <col span="1" style="width: 50%;">
                         <?php if ($this->isLogged) { ?>
                             <col span="2" style="width: 5%;">
                         <?php } ?>
@@ -57,6 +58,7 @@ class EjemplaresView extends BaseView
                             <th scope="col">Id</th>
                             <th scope="col">Nombre producto</th>
                             <th scope="col">Precio</th>
+                            <th scope="col">Nombre ubicación</th>
                             <th scope="col">Fecha Entrada</th>
                             <th scope="col">Fecha Actualización</th>
                             <?php if ($this->isLogged) { ?>
@@ -68,8 +70,9 @@ class EjemplaresView extends BaseView
                         <?php foreach ($this->ejemplares as $ejemplar) { ?>
                             <tr class="text-center">
                                 <td><?= $ejemplar->getId() ?></td>
-                                <td><?= $ejemplar->getNombreProducto() ?></td>
-                                <td><?= $ejemplar->getPrecio() ?></td>
+                                <td><?= htmlspecialchars($ejemplar->getNombreProducto()) ?></td>
+                                <td><?= htmlspecialchars($ejemplar->getPrecio()) ?></td>
+                                <td><?= htmlspecialchars($ejemplar->getNombreUbicacion()) ?></td>
                                 <td><?= $ejemplar->getFechaEntrada() ?></td>
                                 <td><?= $ejemplar->getFechaActualizacion() ?></td>
                                 <?php if ($this->isLogged) { ?>

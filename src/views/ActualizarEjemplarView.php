@@ -30,7 +30,7 @@ class ActualizarEjemplarView extends BaseView
         $this->productos = $productos;
     }
 
-    public function setubicaciones($ubicaciones)
+    public function setUbicaciones($ubicaciones)
     {
         $this->ubicaciones = $ubicaciones;
     }
@@ -43,6 +43,7 @@ class ActualizarEjemplarView extends BaseView
                 <div id="errorUbicacion" class="alert alert-danger <?= in_array('errorUbicacion', $this->error) ? '' : 'd-none' ?>" role="alert">La Ubicación seleccionada no existe</div>
                 <div id="errorPrecio" class="alert alert-danger <?= in_array('errorPrecio', $this->error) ? '' : 'd-none' ?>" role="alert">El precio no es válido</div>
             </div>
+            <input type="hidden" class="form-control" name="id" id="id" value="<?= $this->ejemplar->getId() ?>" />
             <div class="row mb-3">
                 <label for="producto" class="form-label">Producto</label>
                 <select class="form-select" name="producto" id="producto">
@@ -50,23 +51,21 @@ class ActualizarEjemplarView extends BaseView
                         <option value="<?= $producto->getId() ?>"><?= $producto->getNombre() ?></option>
                     <?php } ?>
                 </select>
-
             </div>
             <div class="row mb-3">
                 <label for="ubicacion" class="form-label">Ubicación</label>
                 <select class="form-select" name="ubicacion" id="ubicacion">
                     <?php foreach ($this->ubicaciones as $ubicacion) { ?>
-                        <option value="<?= $ubicacion->getId() ?>"><?= $ubicacion->getNombre() ?></option>
+                        <option value="<?= $ubicacion->getId() ?>" <?= $ubicacion->getNombre() == $this->ejemplar->getNombreUbicacion() ? 'selected' : '' ?> ><?= $ubicacion->getNombre() ?></option>
                     <?php } ?>
                 </select>
-
             </div>
             <div class="row mb-3">
                 <label for="precio" class="form-label">Precio</label>
-                <input type="number" class="form-control" name="precio" id="precio" value="<?= $producto->getPrecio() ?>" />
+                <input type="number" class="form-control" name="precio" id="precio" value="<?= htmlspecialchars($this->ejemplar->getPrecio()) ?>" />
             </div>
             <div class="row mb-3 d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary col" name="crear" style="max-width:130px;">Actualizar ejemplar</button>
+                <button type="submit" class="btn btn-primary col" name="actualizar" style="max-width:130px;">Actualizar ejemplar</button>
             </div>
         </form>
 <?php }

@@ -13,12 +13,27 @@ class EjemplaresRepository
         $this->db = $db;
     }
 
+    public function findById($id)
+    {
+        $this->db->openConnection();
+        $res = $this->db->execPrepared(<<<SQL
+        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
+        FROM Ejemplares E
+        INNER JOIN Productos P ON E.producto_fk = P.id
+        INNER JOIN Ubicaciones U ON E.ubicacion_fk = U.id
+        WHERE E.id = :id;
+        SQL, [':id' => $id]);
+        $this->db->closeConnection();
+
+        return new EjemplarModel($res);
+    }
+
     public function findAll()
     {
         $ejemplares = [];
         $this->db->openConnection();
         $res = $this->db->queryAll(<<<SQL
-        SELECT E.id, P.nombre, E.precio, U.nombre, E.fecha_creacion, E.fecha_actualizacion, E.concurrencia
+        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
         FROM Ejemplares E
         INNER JOIN Productos P ON E.producto_fk = P.id
         INNER JOIN Ubicaciones U ON E.ubicacion_fk = U.id;
@@ -36,7 +51,7 @@ class EjemplaresRepository
     {
         $this->db->openConnection();
         $this->db->execPrepared(<<<SQL
-        INSERT INTO ALMACEN_DB.EJEMPLARES (producto_fk, ubicacion_fk, precio, fecha_creacion, fecha_actualizacion, concurrencia)
+        INSERT INTO ALMACEN_DB.EJEMPLARES (producto_fk, ubicacion_fk, precio, fecha_entrada, fecha_actualizacion, concurrencia)
         VALUES (:productoId, :ubicacionId, :precio, CURDATE(), CURDATE(), 0);
         SQL, [':productoId' => $productoId, ':ubicacionId' => $ubicacionId, ':precio' => $precio]);
         $this->db->closeConnection();

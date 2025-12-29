@@ -28,7 +28,7 @@ class EjemplaresService
             }
         }
 
-        if (!filter_var($precio, FILTER_VALIDATE_FLOAT)) {
+        if (!filter_var($precio, FILTER_VALIDATE_FLOAT, ['options' => ['min_range' => 0]])) {
             $this->errores[] = 'errorPrecio';
         }
         return empty($this->errores);

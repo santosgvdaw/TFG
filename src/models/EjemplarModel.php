@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
-class EjemplarModel {
+class EjemplarModel
+{
     private $id;
     private $nombreProducto;
+    private $nombreUbicacion;
     private $precio;
     private $fechaEntrada;
     private $fechaActualizacion;
@@ -13,34 +15,46 @@ class EjemplarModel {
     public function __construct($data)
     {
         $this->id = $data["id"];
-        $this->nombreProducto = $data["nombreProducto"];
+        $this->nombreProducto = $data["nombre_producto"];
+        $this->nombreUbicacion = $data["nombre_ubicacion"];
         $this->precio = $data["precio"];
-        $this->fechaEntrada = $data["fechaEntrada"];
-        $this->fechaActualizacion = $data["fechaActualizacion"];
+        $this->fechaEntrada = $data["fecha_entrada"];
+        $this->fechaActualizacion = $data["fecha_actualizacion"];
         $this->concurrencia = $data["concurrencia"];
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getNombreProducto() {
+    public function getNombreProducto()
+    {
         return $this->nombreProducto;
     }
 
-    public function getprecio() {
+    public function getNombreUbicacion()
+    {
+        return $this->nombreUbicacion;
+    }
+
+    public function getPrecio()
+    {
         return $this->precio;
     }
 
-    public function getFechaEntrada() {
+    public function getFechaEntrada()
+    {
         return $this->fechaEntrada;
     }
 
-    public function getFechaActualizacion() {
+    public function getFechaActualizacion()
+    {
         return $this->fechaActualizacion;
     }
 
-    public function getConcurrencia() {
+    public function getConcurrencia()
+    {
         return $this->concurrencia;
     }
 }

@@ -31,9 +31,9 @@ class ActualizarEjemplarController
         }
 
         $this->view->setIsLogged(isset($_SESSION['isLogged']));
-        $this->view->setRol($_SESSION['rol']);
+        //$this->view->setRol($_SESSION['rol']);
 
-        $id = $_GET['id'];
+        $id = $_REQUEST['id'];
         $ejemplar = $this->repo->findById($id);
         $productos = $this->repoProductos->findAll();
         $ubicaciones = $this->repoUbicaciones->findAll();
@@ -56,6 +56,7 @@ class ActualizarEjemplarController
         
         $this->view->setEjemplar($ejemplar);
         $this->view->setProductos($productos);
+        $this->view->setubicaciones($ubicaciones);
         $this->view->render();
     }
 }
