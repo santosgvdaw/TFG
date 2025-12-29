@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS Ejemplares (
     ubicacion_fk INT NOT NULL,
     venta_fk INT,
     precio INT NOT NULL,
-    fecha_creacion DATE,
+    fecha_entrada DATE,
     fecha_actualizacion DATE,
     concurrencia INT,
     PRIMARY KEY(id),
