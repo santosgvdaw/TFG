@@ -57,4 +57,16 @@ class Database
         $stmt = $this->con->query($sql);
         return $stmt->fetchAll();
     }
+
+    public function beginTransaction() {
+        $this->con->beginTransaction();
+    }
+
+    public function rollBack() {
+        $this->con->rollBack();
+    }
+
+    public function commit() {
+        $this->con->commit();
+    }
 }
