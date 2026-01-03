@@ -19,7 +19,7 @@ class CategoriasController {
         $categorias = $this->repo->findAll();
         $this->view->setCategorias($categorias);
         $this->view->setIsLogged(isset($_SESSION['isLogged']));
-        $this->view->setRol($_SESSION['rol']);
+        $this->view->setRol($_SESSION['rol'] ?? 'invitado');
         $this->view->render();
     }
 }

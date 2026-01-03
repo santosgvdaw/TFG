@@ -29,7 +29,7 @@ class ActualizarProductoController
         }
 
         $this->view->setIsLogged(isset($_SESSION['isLogged']));
-        //$this->view->setRol($_SESSION['rol']);
+        $this->view->setRol($_SESSION['rol']);
 
         $id = $_REQUEST['id'];
         $categorias = $this->repoCategorias->findAll();

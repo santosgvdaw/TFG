@@ -6,7 +6,6 @@ class CrearProductoView extends BaseView
 {
     private $productos;
     private $categorias;
-    private $rol;
 
     protected function getTitle()
     {
@@ -26,11 +25,6 @@ class CrearProductoView extends BaseView
     public function setCategorias($categorias)
     {
         $this->categorias = $categorias;
-    }
-
-    public function setRol($rol)
-    {
-        $this->rol = $rol;
     }
 
     protected function getContent()

@@ -5,7 +5,6 @@ namespace App\Views;
 class CrearUbicacionView extends BaseView
 {
     private $ubicaciones;
-    private $rol;
 
     protected function getTitle()
     {
@@ -20,11 +19,6 @@ class CrearUbicacionView extends BaseView
     public function setUbicaciones($ubicaciones)
     {
         $this->ubicaciones = $ubicaciones;
-    }
-
-    public function setRol($rol)
-    {
-        $this->rol = $rol;
     }
 
     protected function getContent()

@@ -19,7 +19,7 @@ class ProductosController {
         $productos = $this->repo->findAll();
         $this->view->setProductos($productos);
         $this->view->setIsLogged(isset($_SESSION['isLogged']));
-        $this->view->setRol($_SESSION['rol']);
+        $this->view->setRol($_SESSION['rol'] ?? 'invitado');
         $this->view->render();
     }
 }
