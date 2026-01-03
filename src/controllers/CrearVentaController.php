@@ -30,7 +30,7 @@ class CrearVentaController
 
         $this->view->setIsLogged(isset($_SESSION['isLogged']));
         $this->view->setRol($_SESSION['rol']);
-        $ejemplares = $this->repoEjemplares->findAll();
+        $ejemplares = $this->repoEjemplares->findAllAvailable();
         
         if (isset($_POST['crear'])) {
             $nombre = $_POST['nombre'];
