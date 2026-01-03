@@ -59,7 +59,7 @@ class ProductosView extends BaseView
                             <th scope="col">Stock Actual</th>
                             <th scope="col">Fecha Creación</th>
                             <th scope="col">Fecha Actualización</th>
-                            <?php if ($this->isLogged && $this->rol == 'admin') { ?>
+                            <?php if ($this->isLogged) { ?>
                                 <th scope="col" colspan="2">Acciones</th>
                             <?php } ?>
                         </tr>
@@ -75,7 +75,7 @@ class ProductosView extends BaseView
                                 <td><?= htmlspecialchars($producto->getStockActual()) ?></td>
                                 <td><?= $producto->getFechaCreacion() ?></td>
                                 <td><?= $producto->getFechaActualizacion() ?></td>
-                                <?php if ($this->isLogged && $this->rol == 'admin') { ?>
+                                <?php if ($this->isLogged) { ?>
                                     <td>
                                         <a href='actualizarProducto.php?id=<?= $producto->getId() ?>' class='btn btn-warning'>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
