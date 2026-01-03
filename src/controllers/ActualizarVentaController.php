@@ -33,7 +33,7 @@ class ActualizarVentaController
 
         $id = $_REQUEST['id'];
         $venta = $this->repo->findById($id);
-        $ejemplares = $this->repoEjemplares->findAll();
+        $ejemplares = $this->repoEjemplares->findAllAvailable();
 
         if (isset($_POST['actualizar'])) {
             $nombre = $_POST['nombre'];

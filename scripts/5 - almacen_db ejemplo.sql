@@ -66,3 +66,38 @@ INSERT INTO ALMACEN_DB.Ubicaciones (nombre , fecha_creacion, fecha_actualizacion
                                    ('P4E3' , CURDATE()     , CURDATE()          , 0           ),
                                    ('P4E4' , CURDATE()     , CURDATE()          , 0           ),
                                    ('P4E5' , CURDATE()     , CURDATE()          , 0           );
+
+-- Nomenclatura de ejemplo para los nombres de las ventas:
+-- VTA-YYYYMMDD-XXX -> Venta del día YYYY-MM-DD número XXX
+INSERT INTO ALMACEN_DB.Ventas (nombre            , fecha_creacion, fecha_actualizacion, concurrencia)
+                       VALUES ('VTA-20250101-001', CURDATE()     , CURDATE()          , 0           ),
+                              ('VTA-20250115-001', CURDATE()     , CURDATE()          , 0           ),
+                              ('VTA-20250115-002', CURDATE()     , CURDATE()          , 0           ),
+                              ('VTA-20250202-001', CURDATE()     , CURDATE()          , 0           ),
+                              ('VTA-20250214-001', CURDATE()     , CURDATE()          , 0           ),
+                              ('VTA-20250301-001', CURDATE()     , CURDATE()          , 0           ),
+                              ('VTA-20250315-001', CURDATE()     , CURDATE()          , 0           ),
+                              ('VTA-20250401-001', CURDATE()     , CURDATE()          , 0           ),
+                              ('VTA-20250410-001', CURDATE()     , CURDATE()          , 0           ),
+                              ('VTA-20250420-001', CURDATE()     , CURDATE()          , 0           );
+
+INSERT INTO ALMACEN_DB.Ejemplares (producto_fk                                                                , ubicacion_fk                                                 , venta_fk                                                            , precio, fecha_entrada, fecha_actualizacion, concurrencia)
+                           VALUES ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Smartphone')          , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P1E1'), (SELECT id FROM ALMACEN_DB.Ventas WHERE nombre = 'VTA-20250101-001'), 699   , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Smartphone')          , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P1E1'), (SELECT id FROM ALMACEN_DB.Ventas WHERE nombre = 'VTA-20250202-001'), 749   , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Smartphone')          , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P1E2'), NULL                                                                , 799   , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Audífonos sin cables'), (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P1E3'), (SELECT id FROM ALMACEN_DB.Ventas WHERE nombre = 'VTA-20250115-001'), 89    , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Audífonos sin cables'), (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P1E3'), NULL                                                                , 99    , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Televisor LED')       , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P2E1'), (SELECT id FROM ALMACEN_DB.Ventas WHERE nombre = 'VTA-20250115-002'), 1299  , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Televisor LED')       , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P2E2'), NULL                                                                , 1399  , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Tableta')             , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P1E4'), NULL                                                                , 449   , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Maceta decorativa')   , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P3E1'), (SELECT id FROM ALMACEN_DB.Ventas WHERE nombre = 'VTA-20250214-001'), 25    , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Maceta decorativa')   , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P3E1'), (SELECT id FROM ALMACEN_DB.Ventas WHERE nombre = 'VTA-20250301-001'), 25    , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Maceta decorativa')   , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P3E2'), NULL                                                                , 30    , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Maceta decorativa')   , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P3E2'), NULL                                                                , 30    , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Chaqueta de cuero')   , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P2E3'), (SELECT id FROM ALMACEN_DB.Ventas WHERE nombre = 'VTA-20250315-001'), 199   , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Chaqueta de cuero')   , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P2E4'), NULL                                                                , 219   , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Reloj digital')       , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P2E5'), (SELECT id FROM ALMACEN_DB.Ventas WHERE nombre = 'VTA-20250401-001'), 79    , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Pelota de fútbol')    , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P4E1'), (SELECT id FROM ALMACEN_DB.Ventas WHERE nombre = 'VTA-20250410-001'), 35    , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Pelota de fútbol')    , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P4E1'), NULL                                                                , 35    , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Café orgánico')       , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P4E3'), (SELECT id FROM ALMACEN_DB.Ventas WHERE nombre = 'VTA-20250420-001'), 18    , CURDATE()    , CURDATE()          , 0           ),
+                                  ((SELECT id FROM ALMACEN_DB.Productos WHERE nombre = 'Café orgánico')       , (SELECT id FROM ALMACEN_DB.Ubicaciones WHERE nombre = 'P4E4'), NULL                                                                , 18    , CURDATE()    , CURDATE()          , 0           );
