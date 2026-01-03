@@ -14,10 +14,8 @@ class ActualizarUsuarioView extends BaseView
         return "Usuarios";
     }
 
-    protected function getScript()
-    {
-        return "usuarios.js";
-    }
+    // La actualización de usuarios no necesita script de cliente
+    protected function getScript() {}
 
     public function setUsuario($usuario)
     {
@@ -40,7 +38,7 @@ class ActualizarUsuarioView extends BaseView
                 <label for="rol" class="form-label">Rol</label>
                 <select class="form-select" name="rol" id="rol">
                     <?php foreach ($this->roles as $rol) { ?>
-                        <option value="<?= $rol->getId() ?>" <?= $rol->getNombre() == $this->usuario->getNombreRol() ? 'selected' : '' ?> ><?= $rol->getNombre() ?></option>
+                        <option value="<?= $rol->getId() ?>" <?= $rol->getNombre() == $this->usuario->getNombreRol() ? 'selected' : '' ?>><?= $rol->getNombre() ?></option>
                     <?php } ?>
                 </select>
             </div>
