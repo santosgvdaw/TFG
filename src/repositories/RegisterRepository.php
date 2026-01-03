@@ -30,6 +30,6 @@ class RegisterRepository
         WHERE nombre = :nombre;
         SQL, [':nombre' => $nombre]);
         $this->db->closeConnection();
-        return $res->id;
+        return $res['id'];
     }
 }
