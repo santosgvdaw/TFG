@@ -5,7 +5,6 @@ namespace App\Views;
 class CrearVentaView extends BaseView
 {
     private $ejemplares;
-    private $rol;
 
     protected function getTitle()
     {
@@ -20,11 +19,6 @@ class CrearVentaView extends BaseView
     public function setEjemplares($ejemplares)
     {
         $this->ejemplares = $ejemplares;
-    }
-
-    public function setRol($rol)
-    {
-        $this->rol = $rol;
     }
 
     protected function getContent()

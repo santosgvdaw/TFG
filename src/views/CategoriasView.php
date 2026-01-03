@@ -5,7 +5,6 @@ namespace App\Views;
 class CategoriasView extends BaseView
 {
     private $categorias;
-    private $rol;
 
     protected function getTitle()
     {
@@ -18,11 +17,6 @@ class CategoriasView extends BaseView
     public function setCategorias($categorias)
     {
         $this->categorias = $categorias;
-    }
-
-    public function setRol($rol)
-    {
-        $this->rol = $rol;
     }
 
     protected function getContent()

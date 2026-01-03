@@ -6,7 +6,6 @@ class CrearEjemplarView extends BaseView
 {
     private $productos;
     private $ubicaciones;
-    private $rol;
 
     protected function getTitle()
     {
@@ -26,11 +25,6 @@ class CrearEjemplarView extends BaseView
     public function setUbicaciones($ubicaciones)
     {
         $this->ubicaciones = $ubicaciones;
-    }
-
-    public function setRol($rol)
-    {
-        $this->rol = $rol;
     }
 
     protected function getContent()

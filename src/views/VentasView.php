@@ -5,7 +5,6 @@ namespace App\Views;
 class VentasView extends BaseView
 {
     private $ventas;
-    private $rol;
 
     protected function getTitle()
     {
@@ -18,11 +17,6 @@ class VentasView extends BaseView
     public function setVentas($ventas)
     {
         $this->ventas = $ventas;
-    }
-
-    public function setRol($rol)
-    {
-        $this->rol = $rol;
     }
 
     protected function getContent()

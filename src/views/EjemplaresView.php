@@ -5,7 +5,6 @@ namespace App\Views;
 class EjemplaresView extends BaseView
 {
     private $ejemplares;
-    private $rol;
 
     protected function getTitle()
     {
@@ -18,11 +17,6 @@ class EjemplaresView extends BaseView
     public function setEjemplares($ejemplares)
     {
         $this->ejemplares = $ejemplares;
-    }
-
-    public function setRol($rol)
-    {
-        $this->rol = $rol;
     }
 
     protected function getContent()

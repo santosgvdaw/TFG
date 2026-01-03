@@ -5,7 +5,6 @@ namespace App\Views;
 class ProductosView extends BaseView
 {
     private $productos;
-    private $rol;
 
     protected function getTitle()
     {
@@ -18,11 +17,6 @@ class ProductosView extends BaseView
     public function setProductos($productos)
     {
         $this->productos = $productos;
-    }
-
-    public function setRol($rol)
-    {
-        $this->rol = $rol;
     }
 
     protected function getContent()
