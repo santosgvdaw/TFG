@@ -29,7 +29,7 @@ class ActualizarVentaController
         }
 
         $this->view->setIsLogged(isset($_SESSION['isLogged']));
-        //$this->view->setRol($_SESSION['rol']);
+        $this->view->setRol($_SESSION['rol']);
 
         $id = $_REQUEST['id'];
         $venta = $this->repo->findById($id);

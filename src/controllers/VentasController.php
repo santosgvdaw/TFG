@@ -21,7 +21,7 @@ class VentasController {
         $ventas = $this->repo->findAll();
         $this->view->setVentas($ventas);
         $this->view->setIsLogged(isset($_SESSION['isLogged']));
-        $this->view->setRol($_SESSION['rol']);
+        $this->view->setRol($_SESSION['rol'] ?? 'invitado');
         $this->view->render();
     }
 }

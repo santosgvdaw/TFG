@@ -29,7 +29,7 @@ class UsuariosController {
         $usuarios = $this->repo->findAll();
         $this->view->setUsuarios($usuarios);
         $this->view->setIsLogged(isset($_SESSION['isLogged']));
-        $this->view->setRol($_SESSION['rol']);
+        $this->view->setRol($_SESSION['rol'] ?? 'invitado');
         $this->view->render();
     }
 }
