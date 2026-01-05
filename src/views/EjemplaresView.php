@@ -15,7 +15,8 @@ class EjemplaresView extends BaseView
         return "Ejemplares";
     }
 
-    protected function getScript() {
+    protected function getScript()
+    {
         return "ejemplaresFilter.js";
     }
 
@@ -24,7 +25,7 @@ class EjemplaresView extends BaseView
         $this->ejemplares = $ejemplares;
     }
 
-        public function setUbicacion($ubicacion)
+    public function setUbicacion($ubicacion)
     {
         $this->ubicacion = $ubicacion;
     }
@@ -34,7 +35,7 @@ class EjemplaresView extends BaseView
         $this->ubicaciones = $ubicaciones;
     }
 
-        public function setCategoria($categoria)
+    public function setCategoria($categoria)
     {
         $this->categoria = $categoria;
     }
@@ -50,7 +51,7 @@ class EjemplaresView extends BaseView
             <div class="row">
                 <?php if ($this->isLogged) { ?>
                     <div class="col mb-3">
-                        <a href='crearEjemplar.php' class='col-1 btn btn-success'>
+                        <a href='crearEjemplar.php' class='col btn btn-success'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M12 5l0 14" />
@@ -60,31 +61,25 @@ class EjemplaresView extends BaseView
                         </a>
                     </div>
                 <?php } ?>
-                <form id="filtrar" name="filtrar" action="index.php" method="GET" style="max-width: 330px;">
-                    <div class="form-row">
-                        <div class="col mb-3">
-                            <label for="ubicacion" class="form-label">Ubicación</label>
-                            <select class="form-select" name="ubicacion" id="ubicacion">
-                                <option value="">Ninguna</option>
-                                <?php foreach ($this->ubicaciones as $categoria) { ?>
-                                    <option value="<?= $categoria->getId() ?>" <?= $categoria->getId() == $this->ubicacion ? 'selected' : '' ?>><?= $categoria->getNombre() ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="col mb-3">
-                            <label for="categoria" class="form-label">Categoría</label>
-                            <select class="form-select" name="categoria" id="categoria">
-                                <option value="">Ninguna</option>
-                                <?php foreach ($this->categorias as $categoria) { ?>
-                                    <option value="<?= $categoria->getId() ?>" <?= $categoria->getId() == $this->categoria ? 'selected' : '' ?>><?= $categoria->getNombre() ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="col mb-3 d-flex justify-content-center">
-                            <button id="resetFilters" type="reset" class="btn btn-secondary" name="limpiar" style="max-width:130px;">Limpiar selección</button>
-                            <button type="submit" class="btn btn-primary" name="filtrar" style="max-width:130px;">Filtrar ejemplares</button>
-                        </div>
-                    </div>
+                <form id="filtrar" name="filtrar" action="index.php" method="GET" class="col-7 form-inline">
+                    <label for="ubicacion" class="form-label">Ubicación</label>
+                    <select name="ubicacion" id="ubicacion">
+                        <option value="">Ninguna</option>
+                        <?php foreach ($this->ubicaciones as $categoria) { ?>
+                            <option value="<?= $categoria->getId() ?>" <?= $categoria->getId() == $this->ubicacion ? 'selected' : '' ?>><?= $categoria->getNombre() ?></option>
+                        <?php } ?>
+                    </select>
+
+                    <label for="categoria" class="form-label">Categoría</label>
+                    <select name="categoria" id="categoria">
+                        <option value="">Ninguna</option>
+                        <?php foreach ($this->categorias as $categoria) { ?>
+                            <option value="<?= $categoria->getId() ?>" <?= $categoria->getId() == $this->categoria ? 'selected' : '' ?>><?= $categoria->getNombre() ?></option>
+                        <?php } ?>
+                    </select>
+
+                    <button id="resetFilters" type="reset" class="btn btn-secondary" name="limpiar">Limpiar selección</button>
+                    <button type="submit" class="btn btn-primary" name="filtrar">Filtrar ejemplares</button>
                 </form>
             </div>
             <div class="row">
