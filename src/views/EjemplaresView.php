@@ -5,18 +5,44 @@ namespace App\Views;
 class EjemplaresView extends BaseView
 {
     private $ejemplares;
+    private $ubicacion;
+    private $ubicaciones;
+    private $categoria;
+    private $categorias;
 
     protected function getTitle()
     {
         return "Ejemplares";
     }
 
-    // El listado de ejemplares no necesita script de cliente
-    protected function getScript() {}
+    protected function getScript()
+    {
+        return "ejemplaresFilter.js";
+    }
 
     public function setEjemplares($ejemplares)
     {
         $this->ejemplares = $ejemplares;
+    }
+
+    public function setUbicacion($ubicacion)
+    {
+        $this->ubicacion = $ubicacion;
+    }
+
+    public function setUbicaciones($ubicaciones)
+    {
+        $this->ubicaciones = $ubicaciones;
+    }
+
+    public function setCategoria($categoria)
+    {
+        $this->categoria = $categoria;
+    }
+
+    public function setCategorias($categorias)
+    {
+        $this->categorias = $categorias;
     }
 
     protected function getContent()
@@ -24,15 +50,37 @@ class EjemplaresView extends BaseView
         <div class="container">
             <div class="row">
                 <?php if ($this->isLogged) { ?>
-                    <a href='crearEjemplar.php' class='col-1 btn btn-success'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 5l0 14" />
-                            <path d="M5 12l14 0" />
-                        </svg>
-                        Añadir ejemplar
-                    </a>
+                    <div class="col mb-3">
+                        <a href='crearEjemplar.php' class='col btn btn-success'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-plus">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M12 5l0 14" />
+                                <path d="M5 12l14 0" />
+                            </svg>
+                            Añadir ejemplar
+                        </a>
+                    </div>
                 <?php } ?>
+                <form id="filtrar" name="filtrar" action="index.php" method="GET" class="col-7 form-inline">
+                    <label for="ubicacion" class="form-label">Ubicación</label>
+                    <select name="ubicacion" id="ubicacion">
+                        <option value="">Ninguna</option>
+                        <?php foreach ($this->ubicaciones as $categoria) { ?>
+                            <option value="<?= $categoria->getId() ?>" <?= $categoria->getId() == $this->ubicacion ? 'selected' : '' ?>><?= $categoria->getNombre() ?></option>
+                        <?php } ?>
+                    </select>
+
+                    <label for="categoria" class="form-label">Categoría</label>
+                    <select name="categoria" id="categoria">
+                        <option value="">Ninguna</option>
+                        <?php foreach ($this->categorias as $categoria) { ?>
+                            <option value="<?= $categoria->getId() ?>" <?= $categoria->getId() == $this->categoria ? 'selected' : '' ?>><?= $categoria->getNombre() ?></option>
+                        <?php } ?>
+                    </select>
+
+                    <button id="resetFilters" type="reset" class="btn btn-secondary" name="limpiar">Limpiar selección</button>
+                    <button type="submit" class="btn btn-primary" name="filtrar">Filtrar ejemplares</button>
+                </form>
             </div>
             <div class="row">
                 <table class="table table-striped">

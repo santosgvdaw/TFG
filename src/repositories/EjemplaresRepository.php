@@ -67,6 +67,70 @@ class EjemplaresRepository
         return $ejemplares;
     }
 
+    public function findAllAvailableByUbicacionCategoria($ubicacionId, $categoriaId)
+    {
+        $ejemplares = [];
+        $this->db->openConnection();
+        $res = $this->db->execAllPrepared(<<<SQL
+        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
+        FROM Ejemplares E
+        INNER JOIN Productos P ON E.producto_fk = P.id
+        INNER JOIN Ubicaciones U ON E.ubicacion_fk = U.id
+        WHERE E.venta_fk IS NULL
+        AND E.ubicacion_fk = :ubicacion
+        AND P.categoria_fk = :categoria;
+        SQL, [':ubicacion' => $ubicacionId, ':categoria' => $categoriaId]);
+        $this->db->closeConnection();
+
+        foreach ($res as $ejemplar) {
+            $ejemplares[] = new EjemplarModel($ejemplar);
+        }
+
+        return $ejemplares;
+    }
+
+    public function findAllAvailableByUbicacion($ubicacionId)
+    {
+        $ejemplares = [];
+        $this->db->openConnection();
+        $res = $this->db->execAllPrepared(<<<SQL
+        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
+        FROM Ejemplares E
+        INNER JOIN Productos P ON E.producto_fk = P.id
+        INNER JOIN Ubicaciones U ON E.ubicacion_fk = U.id
+        WHERE E.venta_fk IS NULL
+        AND E.ubicacion_fk = :ubicacion;
+        SQL, [':ubicacion' => $ubicacionId]);
+        $this->db->closeConnection();
+
+        foreach ($res as $ejemplar) {
+            $ejemplares[] = new EjemplarModel($ejemplar);
+        }
+
+        return $ejemplares;
+    }
+
+    public function findAllAvailableByCategoria($categoriaId)
+    {
+        $ejemplares = [];
+        $this->db->openConnection();
+        $res = $this->db->execAllPrepared(<<<SQL
+        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
+        FROM Ejemplares E
+        INNER JOIN Productos P ON E.producto_fk = P.id
+        INNER JOIN Ubicaciones U ON E.ubicacion_fk = U.id
+        WHERE E.venta_fk IS NULL
+        AND P.categoria_fk = :categoria;
+        SQL, [':categoria' => $categoriaId]);
+        $this->db->closeConnection();
+
+        foreach ($res as $ejemplar) {
+            $ejemplares[] = new EjemplarModel($ejemplar);
+        }
+
+        return $ejemplares;
+    }
+
     public function save($productoId, $ubicacionId,  $precio)
     {
         $this->db->openConnection();
@@ -88,7 +152,8 @@ class EjemplaresRepository
         $this->db->closeConnection();
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $this->db->openConnection();
         $this->db->execPrepared(<<<SQL
         DELETE FROM ALMACEN_DB.EJEMPLARES
