@@ -24,17 +24,6 @@ class UsuarioView extends BaseView
         <div class="container">
             <div class="row">
                 <table class="table table-striped">
-                    <colgroup>
-                        <col span="1" style="width: 5%;">
-                        <col span="1" style="width: 50%;">
-                        <col span="1" style="width: 50%;">
-                        <col span="1" style="width: 50%;">
-                        <col span="1" style="width: 50%;">
-                        <col span="1" style="width: 50%;">
-                        <?php if ($this->isLogged) { ?>
-                            <col span="2" style="width: 5%;">
-                        <?php } ?>
-                    </colgroup>
                     <thead>
                         <tr class="text-center">
                             <th scope="col">Id</th>
