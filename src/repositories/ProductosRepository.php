@@ -17,7 +17,7 @@ class ProductosRepository
     {
         $this->db->openConnection();
         $res = $this->db->execPrepared(<<<SQL
-        SELECT P.id, P.nombre, P.descripcion, P.stock_minimo, (SELECT COUNT(*) FROM Ejemplares e WHERE e.producto_fk = p.id) AS stock_actual, C.nombre AS categoria, P.fecha_creacion, P.fecha_actualizacion, P.concurrencia
+        SELECT P.id, P.nombre, P.descripcion, P.stock_minimo, (SELECT COUNT(*) FROM Ejemplares e WHERE e.producto_fk = p.id AND e.venta_fk IS NULL) AS stock_actual, C.nombre AS categoria, P.fecha_creacion, P.fecha_actualizacion, P.concurrencia
         FROM Productos P
         INNER JOIN Categorias C ON P.categoria_fk = C.id
         WHERE P.id = :id;
@@ -32,7 +32,7 @@ class ProductosRepository
         $productos = [];
         $this->db->openConnection();
         $res = $this->db->queryAll(<<<SQL
-        SELECT P.id, P.nombre, P.descripcion, P.stock_minimo, (SELECT COUNT(*) FROM Ejemplares e WHERE e.producto_fk = p.id) AS stock_actual, C.nombre AS categoria, P.fecha_creacion, P.fecha_actualizacion, P.concurrencia
+        SELECT P.id, P.nombre, P.descripcion, P.stock_minimo, (SELECT COUNT(*) FROM Ejemplares e WHERE e.producto_fk = p.id AND e.venta_fk IS NULL) AS stock_actual, C.nombre AS categoria, P.fecha_creacion, P.fecha_actualizacion, P.concurrencia
         FROM Productos P
         INNER JOIN Categorias C ON P.categoria_fk = C.id;
         SQL);
