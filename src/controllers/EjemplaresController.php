@@ -16,7 +16,7 @@ class EjemplaresController {
     }
 
     public function run() {
-        $ejemplares = $this->repo->findAll();
+        $ejemplares = $this->repo->findAllAvailable();
         $this->view->setEjemplares($ejemplares);
         $this->view->setIsLogged(isset($_SESSION['isLogged']));
         $this->view->setRol($_SESSION['rol'] ?? 'invitado');
