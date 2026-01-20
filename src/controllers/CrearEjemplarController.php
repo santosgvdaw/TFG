@@ -39,10 +39,11 @@ class CrearEjemplarController
             $productoId = $_POST['producto'];
             $ubicacionId = $_POST['ubicacion'];
             $precio = $_POST['precio'];
+            $cantidad = $_POST['cantidad'];
 
-            $isValido = $this->service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio);
+            $isValido = $this->service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio, $cantidad);
             if ($isValido) {
-                $this->repo->save($productoId, $ubicacionId, $precio);
+                $this->repo->save($productoId, $ubicacionId, $precio, $cantidad);
                 header('Location: index.php');
                 exit;
             } else { // Si hay errores

@@ -131,13 +131,21 @@ class EjemplaresRepository
         return $ejemplares;
     }
 
-    public function save($productoId, $ubicacionId,  $precio)
+    public function save($productoId, $ubicacionId,  $precio, $cantidad)
     {
         $this->db->openConnection();
-        $this->db->execPrepared(<<<SQL
-        INSERT INTO ALMACEN_DB.EJEMPLARES (producto_fk, ubicacion_fk, precio, fecha_entrada, fecha_actualizacion, concurrencia)
-        VALUES (:productoId, :ubicacionId, :precio, CURDATE(), CURDATE(), 0);
-        SQL, [':productoId' => $productoId, ':ubicacionId' => $ubicacionId, ':precio' => $precio]);
+        $this->db->beginTransaction();
+        try {
+            for ($i = 0; $i < $cantidad; $i++) {
+                $this->db->execPrepared(<<<SQL
+                INSERT INTO ALMACEN_DB.EJEMPLARES (producto_fk, ubicacion_fk, precio, fecha_entrada, fecha_actualizacion, concurrencia)
+                VALUES (:productoId, :ubicacionId, :precio, CURDATE(), CURDATE(), 0);
+                SQL, [':productoId' => $productoId, ':ubicacionId' => $ubicacionId, ':precio' => $precio]);
+            }
+            $this->db->commit();
+        } catch (\PDOException $e) {
+            $this->db->rollBack();
+        }
         $this->db->closeConnection();
     }
 

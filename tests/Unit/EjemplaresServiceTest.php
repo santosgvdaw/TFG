@@ -38,8 +38,9 @@ class EjemplaresServiceTest extends TestCase
             ])
         ];
         $precio = '1';
+        $cantidad = '1';
 
-        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio);
+        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio, $cantidad);
 
         $this->assertTrue($res);
     }
@@ -61,8 +62,9 @@ class EjemplaresServiceTest extends TestCase
             ])
         ];
         $precio = '1';
+        $cantidad = '1';
 
-        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio);
+        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio, $cantidad);
 
         $this->assertFalse($res);
     }
@@ -96,8 +98,9 @@ class EjemplaresServiceTest extends TestCase
             ])
         ];
         $precio = '1';
+        $cantidad = '1';
 
-        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio);
+        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio, $cantidad);
 
         $this->assertTrue($res);
     }
@@ -131,8 +134,9 @@ class EjemplaresServiceTest extends TestCase
             ])
         ];
         $precio = '1';
+        $cantidad = '1';
 
-        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio);
+        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio, $cantidad);
 
         $this->assertFalse($res);
     }
@@ -165,8 +169,9 @@ class EjemplaresServiceTest extends TestCase
             ])
         ];
         $precio = '1';
+        $cantidad = '1';
 
-        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio);
+        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio, $cantidad);
 
         $this->assertTrue($res);
     }
@@ -199,8 +204,9 @@ class EjemplaresServiceTest extends TestCase
             ])
         ];
         $precio = '1.1';
+        $cantidad = '1';
 
-        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio);
+        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio, $cantidad);
 
         $this->assertTrue($res);
     }
@@ -222,8 +228,9 @@ class EjemplaresServiceTest extends TestCase
             ])
         ];
         $precio = 'a';
+        $cantidad = '1';
 
-        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio);
+        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio, $cantidad);
 
         $this->assertFalse($res);
     }
@@ -245,8 +252,128 @@ class EjemplaresServiceTest extends TestCase
             ])
         ];
         $precio = '';
+        $cantidad = '1';
 
-        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio);
+        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio, $cantidad);
+
+        $this->assertFalse($res);
+    }
+
+    // a
+        public function testCantidadIntegerValid()
+    {
+        $service = new EjemplaresService();
+
+        $productoId = 1;
+        $productos = [
+            new ProductoModel([
+                'id' => 1,
+                'nombre' => 'producto',
+                'descripcion' => 'descripcion',
+                'stockMinimo' => '1',
+                'nombreUbicacion' => 'nombreUbicacion',
+                'fechaCreacion' => '2025-01-01',
+                'fechaActualizacion' => '2025-01-01',
+                'concurrencia' => 0
+            ])
+        ];
+        $ubicacionId = 1;
+        $ubicaciones = [
+            new UbicacionModel([
+                'id' => 1,
+                'nombre' => 'ubicacion',
+                'fechaCreacion' => '2025-01-01',
+                'fechaActualizacion' => '2025-01-01',
+                'concurrencia' => 0
+            ])
+        ];
+        $precio = '1';
+        $cantidad = '1';
+
+        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio, $cantidad);
+
+        $this->assertTrue($res);
+    }
+
+    public function testCantidadFloatNotValid()
+    {
+        $service = new EjemplaresService();
+
+        $productoId = 1;
+        $productos = [
+            new ProductoModel([
+                'id' => 1,
+                'nombre' => 'producto',
+                'descripcion' => 'descripcion',
+                'stockMinimo' => '1',
+                'nombreUbicacion' => 'nombreUbicacion',
+                'fechaCreacion' => '2025-01-01',
+                'fechaActualizacion' => '2025-01-01',
+                'concurrencia' => 0
+            ])
+        ];
+        $ubicacionId = 1;
+        $ubicaciones = [
+            new UbicacionModel([
+                'id' => 1,
+                'nombre' => 'ubicacion',
+                'fechaCreacion' => '2025-01-01',
+                'fechaActualizacion' => '2025-01-01',
+                'concurrencia' => 0
+            ])
+        ];
+        $precio = '1.1';
+        $cantidad = '1.1';
+
+        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio, $cantidad);
+
+        $this->assertFalse($res);
+    }
+
+    public function testCantidadNotValid()
+    {
+        $service = new EjemplaresService();
+
+        $productoId = 1;
+        $productos = [];
+        $ubicacionId = 1;
+        $ubicaciones = [
+            new UbicacionModel([
+                'id' => 1,
+                'nombre' => 'ubicacion',
+                'fechaCreacion' => '2025-01-01',
+                'fechaActualizacion' => '2025-01-01',
+                'concurrencia' => 0
+            ])
+        ];
+        $precio = '1';
+        $cantidad = 'a';
+
+        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio, $cantidad);
+
+        $this->assertFalse($res);
+    }
+
+    public function testCantidadEmptyNotValid()
+    {
+        $service = new EjemplaresService();
+
+        $productoId = 1;
+        $productos = [];
+        $ubicacionId = 1;
+        $ubicaciones = [
+            new UbicacionModel([
+                'id' => 1,
+                'nombre' => 'ubicacion',
+                'fechaCreacion' => '2025-01-01',
+                'fechaActualizacion' => '2025-01-01',
+                'concurrencia' => 0
+            ])
+        ];
+        $precio = '1';
+        $cantidad = '';
+
+        $res = $service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio, $cantidad);
 
         $this->assertFalse($res);
     }
