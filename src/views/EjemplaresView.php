@@ -14,6 +14,10 @@ class EjemplaresView extends BaseView
     {
         return "Ejemplares";
     }
+    protected function getCurrentPage()
+    {
+        return "ejemplares";
+    }
 
     protected function getScript()
     {

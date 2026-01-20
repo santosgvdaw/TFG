@@ -9,6 +9,11 @@ class RegisterView extends BaseView
         return "Registro";
     }
 
+    protected function getCurrentPage()
+    {
+        return "register";
+    }
+
     // El registro no necesita cabecera
     protected function getHeader() {}
 

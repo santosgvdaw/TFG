@@ -17,6 +17,7 @@ abstract class BaseView
     }
 
     abstract protected function getTitle();
+    abstract protected function getCurrentPage();
     protected function getHeader()
     { ?>
         <div class="col-md-3 mb-2 mb-md-0">
@@ -31,7 +32,7 @@ abstract class BaseView
         </div>
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li>
-                <a href="productos.php" class="nav-link px-2 link-secondary">
+                <a href="productos.php" class="nav-link px-2 <?php if ($this->getCurrentPage() == 'productos') { echo 'link-secondary'; } ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-package">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
@@ -44,7 +45,7 @@ abstract class BaseView
                 </a>
             </li>
             <li>
-                <a href="index.php" class="nav-link px-2">
+                <a href="index.php" class="nav-link px-2 <?php if ($this->getCurrentPage() == 'ejemplares') { echo 'link-secondary'; } ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-archive">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" />
@@ -55,7 +56,7 @@ abstract class BaseView
                 </a>
             </li>
             <li>
-                <a href="ventas.php" class="nav-link px-2">
+                <a href="ventas.php" class="nav-link px-2 <?php if ($this->getCurrentPage() == 'ventas') { echo 'link-secondary'; } ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-shopping-bag">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" />
@@ -65,7 +66,7 @@ abstract class BaseView
                 </a>
             </li>
             <li>
-                <a href="categorias.php" class="nav-link px-2">
+                <a href="categorias.php" class="nav-link px-2 <?php if ($this->getCurrentPage() == 'categorias') { echo 'link-secondary'; } ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-category">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M4 4h6v6h-6z" />
@@ -77,7 +78,7 @@ abstract class BaseView
                 </a>
             </li>
             <li>
-                <a href="ubicaciones.php" class="nav-link px-2">
+                <a href="ubicaciones.php" class="nav-link px-2 <?php if ($this->getCurrentPage() == 'ubicaciones') { echo 'link-secondary'; } ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-map-pin">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
@@ -88,7 +89,7 @@ abstract class BaseView
             </li>
             <?php if ($this->isLogged && $this->rol == 'admin') { ?>
                 <li>
-                    <a href="usuarios.php" class="nav-link px-2">
+                    <a href="usuarios.php" class="nav-link px-2 <?php if ($this->getCurrentPage() == 'usuarios') { echo 'link-secondary'; } ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />

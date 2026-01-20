@@ -11,6 +11,11 @@ class VentasView extends BaseView
         return "Ventas";
     }
 
+    protected function getCurrentPage()
+    {
+        return "ventas";
+    }
+
     // El listado de ventas no necesita script de cliente
     protected function getScript() {}
 

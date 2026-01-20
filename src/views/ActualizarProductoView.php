@@ -13,6 +13,10 @@ class ActualizarProductoView extends BaseView
     {
         return "Productos";
     }
+    protected function getCurrentPage()
+    {
+        return "productos";
+    }
 
     protected function getScript()
     {

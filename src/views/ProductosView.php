@@ -11,6 +11,11 @@ class ProductosView extends BaseView
         return "Productos";
     }
 
+    protected function getCurrentPage()
+    {
+        return "productos";
+    }
+
     // El listado de productos no necesita script de cliente
     protected function getScript() {}
 
