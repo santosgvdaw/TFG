@@ -13,6 +13,11 @@ class ActualizarCategoriaView extends BaseView
         return "Categorías";
     }
 
+    protected function getCurrentPage()
+    {
+        return "categorias";
+    }
+
     protected function getScript()
     {
         return "categorias.js";

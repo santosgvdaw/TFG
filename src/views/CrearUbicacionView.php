@@ -11,6 +11,11 @@ class CrearUbicacionView extends BaseView
         return "Ubicaciones";
     }
 
+    protected function getCurrentPage()
+    {
+        return "ubicaciones";
+    }
+
     protected function getScript()
     {
         return "ubicaciones.js";

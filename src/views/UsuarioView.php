@@ -11,6 +11,11 @@ class UsuarioView extends BaseView
         return "Usuarios";
     }
 
+    protected function getCurrentPage()
+    {
+        return "usuarios";
+    }
+
     // El listado de usuarios no necesita script de cliente
     protected function getScript() {}
 

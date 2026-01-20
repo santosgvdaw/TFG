@@ -11,6 +11,11 @@ class CategoriasView extends BaseView
         return "Categorías";
     }
 
+    protected function getCurrentPage()
+    {
+        return "categorias";
+    }
+
     // El listado de categorías no necesita script de cliente
     protected function getScript() {}
 

@@ -12,6 +12,11 @@ class CrearProductoView extends BaseView
         return "Productos";
     }
 
+    protected function getCurrentPage()
+    {
+        return "productos";
+    }
+
     protected function getScript()
     {
         return "productos.js";

@@ -11,6 +11,11 @@ class UbicacionesView extends BaseView
         return "Ubicaciones";
     }
 
+    protected function getCurrentPage()
+    {
+        return "ubicaciones";
+    }
+
     // El listado de ubicaciones no necesita script de cliente
     protected function getScript() {}
 

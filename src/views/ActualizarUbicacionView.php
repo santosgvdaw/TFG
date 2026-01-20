@@ -12,6 +12,10 @@ class ActualizarUbicacionView extends BaseView
     {
         return "Categorías";
     }
+    protected function getCurrentPage()
+    {
+        return "ubicaciones";
+    }
 
     protected function getScript()
     {

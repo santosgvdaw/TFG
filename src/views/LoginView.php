@@ -7,6 +7,11 @@ class LoginView extends BaseView {
         return "Login";
     }
 
+    protected function getCurrentPage()
+    {
+        return "login";
+    }
+
     // El login no necesita cabecera
     protected function getHeader() {}
 

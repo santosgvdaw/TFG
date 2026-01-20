@@ -10,6 +10,10 @@ class CrearCategoriaView extends BaseView
     {
         return "Categorías";
     }
+        protected function getCurrentPage()
+    {
+        return "categorias";
+    }
 
     protected function getScript()
     {

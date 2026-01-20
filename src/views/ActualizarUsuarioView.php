@@ -14,6 +14,11 @@ class ActualizarUsuarioView extends BaseView
         return "Usuarios";
     }
 
+    protected function getCurrentPage()
+    {
+        return "usuarios";
+    }
+
     // La actualización de usuarios no necesita script de cliente
     protected function getScript() {}
 

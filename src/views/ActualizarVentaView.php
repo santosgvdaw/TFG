@@ -13,6 +13,10 @@ class ActualizarVentaView extends BaseView
     {
         return "Ventas";
     }
+    protected function getCurrentPage()
+    {
+        return "ventas";
+    }
 
     protected function getScript()
     {
