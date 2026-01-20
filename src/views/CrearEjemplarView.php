@@ -38,6 +38,7 @@ class CrearEjemplarView extends BaseView
                 <div id="errorProducto" class="alert alert-danger <?= in_array('errorProducto', $this->error) ? '' : 'd-none' ?>" role="alert">El producto seleccionado no existe</div>
                 <div id="errorUbicacion" class="alert alert-danger <?= in_array('errorUbicacion', $this->error) ? '' : 'd-none' ?>" role="alert">La ubicación seleccionada no existe</div>
                 <div id="errorPrecio" class="alert alert-danger <?= in_array('errorPrecio', $this->error) ? '' : 'd-none' ?>" role="alert">El precio no es válido</div>
+                <div id="errorCantidad" class="alert alert-danger <?= in_array('errorPrecio', $this->error) ? '' : 'd-none' ?>" role="alert">La cantidad no es válida, mínimo 1</div>
             </div>
             <div class="row mb-3">
                 <label for="producto" class="form-label">Producto</label>
@@ -60,6 +61,10 @@ class CrearEjemplarView extends BaseView
             <div class="row mb-3">
                 <label for="precio" class="form-label">Precio</label>
                 <input type="number" class="form-control" name="precio" id="precio" />
+            </div>
+            <div class="row mb-3">
+                <label for="cantidad" class="form-label">Cantidad</label>
+                <input type="number" class="form-control" name="cantidad" id="cantidad" value="1" />
             </div>
             <div class="row mb-3 d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary col" name="crear" style="max-width:130px;">Añadir ejemplar</button>
