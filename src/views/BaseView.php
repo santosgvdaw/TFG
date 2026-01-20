@@ -167,11 +167,12 @@ abstract class BaseView
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title><?= $this->getTitle() ?></title>
             <link href="bootstrap.min.v5.3.8.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+            <link rel="stylesheet" href="styles.css">
             <script src="<?= $this->getScript() ?>" defer></script>
         </head>
 
         <body>
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-5 border-bottom"><?php $this->getHeader(); ?></header>
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between text-center py-3 mb-5 border-bottom"><?php $this->getHeader(); ?></header>
             <div class="container">
                 <div class="mb-3 d-flex justify-content-center"><?php $this->getContent() ?></div>
             </div>
