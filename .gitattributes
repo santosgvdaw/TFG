@@ -1,0 +1,55 @@
+# Common settings that generally should always be used with your language specific settings
+
+# Auto detect text files and perform LF normalization
+*          text=auto
+
+#
+# The above will handle all files NOT found below
+## Documents
+*.pdf      diff=astextplain
+*.PDF      diff=astextplain
+*.md       text diff=markdown
+*.sql      text
+
+# Graphics
+*.png      binary
+*.jpg      binary
+*.jpeg     binary
+*.gif      binary
+*.ico      binary
+# SVG treated as text by default.
+#*.svg      text
+# If you want to treat it as binary,
+# use the following line instead.
+*.svg    binary
+
+# Serialisation
+*.json     text
+
+# PHP files
+*.php     text eol=lf diff=php
+
+# Configuration
+phpunit.xml  text eol=lf
+
+## GITATTRIBUTES FOR WEB PROJECTS
+#
+# These settings are for any web project.
+#
+# Details per file setting:
+#   text    These files should be normalized (i.e. convert CRLF to LF).
+#   binary  These files are binary and should be left untouched.
+#
+# Note that binary is a macro for -text -diff.
+######################################################################
+
+# Source code
+*.css             text diff=css
+*.htm             text diff=html
+*.html            text diff=html
+*.js              text eol=lf
+*.sql             text
+
+
+# Configs
+*.env             text
