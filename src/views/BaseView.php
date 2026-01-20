@@ -142,7 +142,7 @@ abstract class BaseView
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title><?= $this->getTitle() ?></title>
-            <link href="bootstrap.min.v5.3.8.css" rel="stylesheet" integrity="sha384-vt87vjrIEEfJX9vGHpIbioSQQd3ud5HqwGyQHSsaDskGhAqu+OkhhJ74Hn+PQilp" crossorigin="anonymous">
+            <link href="bootstrap.min.v5.3.8.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
             <script src="<?= $this->getScript() ?>" defer></script>
         </head>
 
