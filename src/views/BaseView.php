@@ -166,6 +166,7 @@ abstract class BaseView
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title><?= $this->getTitle() ?></title>
+            <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
             <link href="bootstrap.min.v5.3.8.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
             <link rel="stylesheet" href="styles.css">
             <script src="<?= $this->getScript() ?>" defer></script>
