@@ -50,17 +50,24 @@ class EjemplaresRepository
         return $ejemplares;
     }
 
-    public function findAllAvailable()
+    // ejemplare que se quieren añadir a la lista
+    public function findAllAvailable($moreEjemplares = [])
     {
         $ejemplares = [];
         $this->db->openConnection();
+
+        // Si no se dan más ejemplares se devuelven los que no forman parte de una venta
+        // Si se dan más ejemplares se devuelven los que no forman parte de una venta y los ejemplares dados
+        $filter = empty($moreEjemplares) ? '' : 'OR E.id IN (' . implode(',', $moreEjemplares) . ')';
+
         $res = $this->db->queryAll(<<<SQL
         SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
         FROM Ejemplares E
         INNER JOIN Productos P ON E.producto_fk = P.id
         INNER JOIN Ubicaciones U ON E.ubicacion_fk = U.id
-        WHERE E.venta_fk IS NULL;;
+        WHERE E.venta_fk IS NULL $filter;
         SQL);
+
         $this->db->closeConnection();
 
         foreach ($res as $ejemplar) {
