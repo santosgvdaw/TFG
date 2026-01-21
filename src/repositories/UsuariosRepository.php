@@ -14,16 +14,19 @@ class UsuariosRepository
         $this->db = $db;
     }
 
-    public function findById($id)
+    public function findById($id, $concurrencia)
     {
         $this->db->openConnection();
         $res = $this->db->execPrepared(<<<SQL
         SELECT U.id, U.nombre, R.nombre AS nombre_rol, U.correo, U.fecha_creacion, U.fecha_actualizacion, U.concurrencia
         FROM USUARIOS_DB.Usuarios U
         INNER JOIN USUARIOS_DB.Roles R ON U.rol_fk = R.id
-        WHERE U.id = :id;
-        SQL, [':id' => $id]);
+        WHERE U.id = :id AND U.concurrencia = :concurrencia;
+        SQL, [':id' => $id, ':concurrencia' => $concurrencia]);
         $this->db->closeConnection();
+        if ($res == null) {
+            return null;
+        }
 
         return new UsuariosModel($res);
     }

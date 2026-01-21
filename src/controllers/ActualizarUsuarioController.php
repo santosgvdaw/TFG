@@ -35,7 +35,14 @@ class ActualizarUsuarioController
         $this->view->setRol($_SESSION['rol']);
 
         $id = $_REQUEST['id'];
-        $usuario = $this->repo->findById($id);
+        $concurrencia = $_REQUEST['con'];
+        $usuario = $this->repo->findById($id, $concurrencia);
+
+        if ($usuario == null) {
+            header('Location: usuarios.php');
+            exit;
+        }
+
         $roles = $this->repo->findAllRoles();
 
         if (isset($_POST['actualizar'])) {
@@ -43,7 +50,7 @@ class ActualizarUsuarioController
 
             $isValido = $this->service->validar($rol, $roles);
             if ($isValido) {
-                $this->repo->update($usuario->getId(), $rol, $usuario->getConcurrencia());
+                $this->repo->update($usuario->getId(), $rol, $concurrencia);
                 header('Location: usuarios.php');
                 exit;
             } else { // Si hay errores

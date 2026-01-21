@@ -39,6 +39,7 @@ class ActualizarUsuarioView extends BaseView
                 <div id="errorRol" class="alert alert-danger <?= in_array('errorRol', $this->error) ? '' : 'd-none' ?>" role="alert">El rol seleccionado no existe</div>
             </div>
             <input type="hidden" class="form-control" name="id" id="id" value="<?= $this->usuario->getId() ?>" />
+            <input type="hidden" class="form-control" name="con" id="con" value="<?= $this->usuario->getConcurrencia() ?>" />
             <div class="row mb-3">
                 <label for="rol" class="form-label">Rol</label>
                 <select class="form-select" name="rol" id="rol">

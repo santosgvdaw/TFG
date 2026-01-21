@@ -29,8 +29,9 @@ class BorrarUsuarioController
 
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $usuario = $this->repo->findById($id);
-            $this->repo->delete($id, $usuario->getConcurrencia());
+            $concurrencia = $_GET['con'];
+
+            $this->repo->delete($id, $concurrencia);
         }
 
         header('Location: usuarios.php');
