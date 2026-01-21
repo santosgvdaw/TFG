@@ -13,7 +13,7 @@ class EjemplaresRepository
         $this->db = $db;
     }
 
-    public function findById($id)
+    public function findById($id, $concurrencia)
     {
         $this->db->openConnection();
         $res = $this->db->execPrepared(<<<SQL
@@ -21,9 +21,12 @@ class EjemplaresRepository
         FROM Ejemplares E
         INNER JOIN Productos P ON E.producto_fk = P.id
         INNER JOIN Ubicaciones U ON E.ubicacion_fk = U.id
-        WHERE E.id = :id;
-        SQL, [':id' => $id]);
+        WHERE E.id = :id AND E.concurrencia = :concurrencia;
+        SQL, [':id' => $id, ':concurrencia' => $concurrencia]);
         $this->db->closeConnection();
+        if ($res == null) {
+            return null;
+        }
 
         return new EjemplarModel($res);
     }

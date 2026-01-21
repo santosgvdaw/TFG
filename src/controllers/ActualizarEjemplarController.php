@@ -34,7 +34,14 @@ class ActualizarEjemplarController
         $this->view->setRol($_SESSION['rol']);
 
         $id = $_REQUEST['id'];
-        $ejemplar = $this->repo->findById($id);
+        $concurrencia = $_REQUEST['con'];
+
+        $ejemplar = $this->repo->findById($id, $concurrencia);
+        if ($ejemplar == null) {
+            header('Location: index.php');
+            exit;
+        }
+
         $productos = $this->repoProductos->findAll();
         $ubicaciones = $this->repoUbicaciones->findAll();
 
@@ -43,9 +50,9 @@ class ActualizarEjemplarController
             $ubicacionId = $_POST['ubicacion'];
             $precio = $_POST['precio'];
 
-            $isValido = $this->service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio);
+            $isValido = $this->service->validar($productoId, $productos, $ubicacionId, $ubicaciones, $precio, 1);
             if ($isValido) {
-                $this->repo->update($id, $productoId, $ubicacionId, $precio, $ejemplar->getConcurrencia());
+                $this->repo->update($id, $productoId, $ubicacionId, $precio, $concurrencia);
                 header('Location: index.php');
                 exit;
             } else { // Si hay errores

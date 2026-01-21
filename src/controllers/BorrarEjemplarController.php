@@ -24,8 +24,9 @@ class BorrarEjemplarController
 
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $ejemplar = $this->repo->findById($id);
-            $this->repo->delete($id, $ejemplar->getConcurrencia());
+            $concurrencia = $_GET['con'];
+
+            $this->repo->delete($id, $concurrencia);
         }
 
         header('Location: index.php');

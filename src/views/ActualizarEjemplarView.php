@@ -48,6 +48,7 @@ class ActualizarEjemplarView extends BaseView
                 <div id="errorPrecio" class="alert alert-danger <?= in_array('errorPrecio', $this->error) ? '' : 'd-none' ?>" role="alert">El precio no es válido</div>
             </div>
             <input type="hidden" class="form-control" name="id" id="id" value="<?= $this->ejemplar->getId() ?>" />
+            <input type="hidden" class="form-control" name="con" id="con" value="<?= $this->ejemplar->getConcurrencia() ?>" />
             <div class="row mb-3">
                 <label for="producto" class="form-label">Producto</label>
                 <select class="form-select" name="producto" id="producto">
