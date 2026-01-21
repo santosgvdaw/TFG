@@ -30,7 +30,7 @@ class BorrarUbicacionController
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
             $concurrencia = $_GET['con'];
-            $ubicacion = $this->repo->findById($id);
+
             $this->repo->delete($id, $concurrencia);
         }
 
