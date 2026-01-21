@@ -30,16 +30,19 @@ class VentasRepository
         return $ventas;
     }
 
-    public function findById($id)
+    public function findById($id, $concurrencia)
     {
         $this->db->openConnection();
         $res = $this->db->execAllPrepared(<<<SQL
         SELECT V.id, E.id AS ejemplar, V.nombre, V.fecha_creacion, V.fecha_actualizacion, V.concurrencia
         FROM Ventas V
         LEFT JOIN Ejemplares E ON E.venta_fk = V.id
-        WHERE V.id = :id;
-        SQL, [':id' => $id]);
+        WHERE V.id = :id AND V.concurrencia = :concurrencia;
+        SQL, [':id' => $id, ':concurrencia' => $concurrencia]);
         $this->db->closeConnection();
+        if ($res == null) {
+            return null;
+        }
 
         $venta = new VentaModel($res[0]);
         foreach ($res as $_venta) {

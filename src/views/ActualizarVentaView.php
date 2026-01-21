@@ -41,6 +41,7 @@ class ActualizarVentaView extends BaseView
                 <div id="errorProductos" class="alert alert-danger <?= in_array('errorProducto', $this->error) ? '' : 'd-none' ?>" role="alert">Uno o varios producto/s seleccionado/s no existen</div>
             </div>
             <input type="hidden" class="form-control" name="id" id="id" value="<?= $this->venta->getId() ?>" />
+            <input type="hidden" class="form-control" name="con" id="con" value="<?= $this->venta->getConcurrencia() ?>" />
             <div class="row mb-3 d-flex justify-content-center">
                 <button id="btnAddEjemplar" class="btn btn-secondary row mb-3" name="crear" style="max-width:130px;">Añadir Ejemplar</button>
             </div>

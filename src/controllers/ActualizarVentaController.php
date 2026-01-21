@@ -32,21 +32,28 @@ class ActualizarVentaController
         $this->view->setRol($_SESSION['rol']);
 
         $id = $_REQUEST['id'];
-        $venta = $this->repo->findById($id);
+        $concurrencia = $_REQUEST['con'];
+
+        $venta = $this->repo->findById($id, $concurrencia);
+        if ($venta == null) {
+            header('Location: ventas.php');
+            exit;
+        }
+
         $ejemplares = $this->repoEjemplares->findAllAvailable();
 
         if (isset($_POST['actualizar'])) {
             $nombre = $_POST['nombre'];
             $numEjemplares = $_POST['numEjemplares'];
             $ejemplaresVenta = [];
-            for ($i=1; $i <= $numEjemplares; $i++) { 
+            for ($i = 1; $i <= $numEjemplares; $i++) {
                 $ejemplaresVenta[] = $_POST["ejemplar{$i}"];
             }
             $ejemplares = array_map(fn($e) => $e->getId(), $ejemplares);
 
             $isValido = $this->service->validar($nombre, $ejemplaresVenta, $ejemplares);
             if ($isValido) {
-                $this->repo->update($id, $nombre, $ejemplaresVenta, $venta->getConcurrencia());
+                $this->repo->update($id, $nombre, $ejemplaresVenta, $concurrencia);
                 header('Location: ventas.php');
                 exit;
             } else { // Si hay errores
@@ -54,7 +61,7 @@ class ActualizarVentaController
             }
         }
 
-        
+
         $this->view->setVenta($venta);
         $this->view->setEjemplares($ejemplares);
         $this->view->render();

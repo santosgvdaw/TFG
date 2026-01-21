@@ -24,8 +24,9 @@ class BorrarVentaController
 
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $venta = $this->repo->findById($id);
-            $this->repo->delete($id, $venta->getConcurrencia());
+            $concurrencia = $_GET['con'];
+
+            $this->repo->delete($id, $concurrencia);
         }
 
         header('Location: ventas.php');
