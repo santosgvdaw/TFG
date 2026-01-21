@@ -24,8 +24,9 @@ class BorrarProductoController
 
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $producto = $this->repo->findById($id);
-            $this->repo->delete($id, $producto->getConcurrencia()); 
+            $concurrencia = $_GET['con'];
+
+            $this->repo->delete($id, $concurrencia); 
         }
 
         header('Location: productos.php');

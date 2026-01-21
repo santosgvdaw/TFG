@@ -13,16 +13,19 @@ class ProductosRepository
         $this->db = $db;
     }
 
-    public function findById($id)
+    public function findById($id, $concurrencia)
     {
         $this->db->openConnection();
         $res = $this->db->execPrepared(<<<SQL
         SELECT P.id, P.nombre, P.descripcion, P.stock_minimo, (SELECT COUNT(*) FROM Ejemplares e WHERE e.producto_fk = p.id AND e.venta_fk IS NULL) AS stock_actual, C.nombre AS categoria, P.fecha_creacion, P.fecha_actualizacion, P.concurrencia
         FROM Productos P
         INNER JOIN Categorias C ON P.categoria_fk = C.id
-        WHERE P.id = :id;
-        SQL, [':id' => $id]);
+        WHERE P.id = :id AND P.concurrencia = :concurrencia;
+        SQL, [':id' => $id, ':concurrencia' => $concurrencia]);
         $this->db->closeConnection();
+        if ($res == null) {
+            return null;
+        }
 
         return new ProductoModel($res);
     }

@@ -31,11 +31,17 @@ class ActualizarProductoController
         $this->view->setIsLogged(isset($_SESSION['isLogged']));
         $this->view->setRol($_SESSION['rol']);
 
-        $id = $_REQUEST['id'];
         $categorias = $this->repoCategorias->findAll();
         $this->view->setCategorias($categorias);
 
-        $producto = $this->repo->findById($id);
+        $id = $_REQUEST['id'];
+        $concurrencia = $_REQUEST['con'];
+
+        $producto = $this->repo->findById($id, $concurrencia);
+        if ($producto == null) {
+            header('Location: productos.php');
+            exit;
+        }
 
         if (isset($_POST['actualizar'])) {
             $nombre = $_POST['nombre'];
@@ -45,7 +51,7 @@ class ActualizarProductoController
 
             $isValido = $this->service->validar($categoriaId, $categorias, $nombre, $descripcion, $stockMinimo);
             if ($isValido) {
-                $this->repo->update($producto->getId(), $nombre, $descripcion, $categoriaId, $stockMinimo, $producto->getConcurrencia());
+                $this->repo->update($producto->getId(), $nombre, $descripcion, $categoriaId, $stockMinimo, $concurrencia);
                 header('Location: productos.php');
                 exit;
             } else { // Si hay errores

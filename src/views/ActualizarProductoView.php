@@ -43,6 +43,7 @@ class ActualizarProductoView extends BaseView
                 <div id="errorStockMinimo" class="alert alert-danger <?= in_array('errorStockMinimo', $this->error) ? '' : 'd-none' ?>" role="alert">El stock no es un número entero positivo</div>
             </div>
             <input type="hidden" class="form-control" name="id" id="id" value="<?= $this->producto->getId() ?>" />
+            <input type="hidden" class="form-control" name="con" id="con" value="<?= $this->producto->getConcurrencia() ?>" />
             <div class="row mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" class="form-control" name="nombre" id="nombre" value="<?= htmlspecialchars($this->producto->getNombre()) ?>" />
