@@ -13,16 +13,18 @@ class UbicacionesRepository
         $this->db = $db;
     }
 
-    public function findById($id)
+    public function findById($id, $concurrencia)
     {
-        $ejemplares = [];
         $this->db->openConnection();
         $res = $this->db->execPrepared(<<<SQL
         SELECT id, nombre, fecha_creacion, fecha_actualizacion, concurrencia
         FROM ALMACEN_DB.Ubicaciones
-        WHERE id = :id;
-        SQL, [':id' => $id]);
+        WHERE id = :id AND concurrencia = :concurrencia;
+        SQL, [':id' => $id, ':concurrencia' => $concurrencia]);
         $this->db->closeConnection();
+        if ($res == null) {
+            return null;
+        }
 
         return new UbicacionModel($res);
     }

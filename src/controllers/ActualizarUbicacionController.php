@@ -35,14 +35,19 @@ class ActualizarUbicacionController
         $this->view->setRol($_SESSION['rol']);
 
         $id = $_REQUEST['id'];
-        $ubicacion = $this->repo->findById($id);
+        $concurrencia = $_REQUEST['con'];
+        $ubicacion = $this->repo->findById($id, $concurrencia);
+        if ($ubicacion == null) {
+            header('Location: ubicaciones.php');
+            exit;
+        }
 
         if (isset($_POST['actualizar'])) {
             $nombre = $_POST['nombre'];
 
             $isValido = $this->service->validar($nombre);
             if ($isValido) {
-                $this->repo->update($ubicacion->getId(), $nombre, $ubicacion->getConcurrencia());
+                $this->repo->update($ubicacion->getId(), $nombre, $concurrencia);
                 header('Location: ubicaciones.php');
                 exit;
             } else { // Si hay errores
