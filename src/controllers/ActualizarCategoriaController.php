@@ -35,14 +35,19 @@ class ActualizarCategoriaController
         $this->view->setRol($_SESSION['rol']);
 
         $id = $_REQUEST['id'];
-        $categoria = $this->repo->findById($id);
-
+        $concurrencia = $_REQUEST['con'];
+        $categoria = $this->repo->findById($id, $concurrencia);
+        if ($categoria == null) {
+            header('Location: categorias.php');
+            exit;
+        }
+        
         if (isset($_POST['actualizar'])) {
             $nombre = $_POST['nombre'];
-
+            
             $isValido = $this->service->validar($nombre);
             if ($isValido) {
-                $this->repo->update($categoria->getId(), $nombre, $categoria->getConcurrencia());
+                $this->repo->update($categoria->getId(), $nombre, $concurrencia);
                 header('Location: categorias.php');
                 exit;
             } else { // Si hay errores

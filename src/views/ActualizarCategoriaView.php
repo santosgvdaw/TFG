@@ -35,6 +35,7 @@ class ActualizarCategoriaView extends BaseView
                 <div id="errorNombre" class="alert alert-danger <?= in_array('errorNombre', $this->error) ? '' : 'd-none' ?>" role="alert">El nombre es demasiado largo (max. 20 caracteres) o corto (min. 1 caracter)</div>
             </div>
             <input type="hidden" class="form-control" name="id" id="id" value="<?= $this->categoria->getId() ?>" />
+            <input type="hidden" class="form-control" name="con" id="con" value="<?= $this->categoria->getConcurrencia() ?>" />
             <div class="row mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" class="form-control" name="nombre" id="nombre" value="<?= htmlspecialchars($this->categoria->getNombre()) ?>" />

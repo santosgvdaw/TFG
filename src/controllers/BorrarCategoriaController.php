@@ -29,8 +29,9 @@ class BorrarCategoriaController
 
         if (isset($_GET['id'])) {
             $id = $_GET['id'];
-            $categoria = $this->repo->findById($id);
-            $this->repo->delete($id, $categoria->getConcurrencia());
+            $concurrencia = $_GET['con'];
+
+            $this->repo->delete($id, $concurrencia);
         }
 
         header('Location: categorias.php');
