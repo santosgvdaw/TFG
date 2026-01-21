@@ -40,7 +40,7 @@ class ActualizarVentaController
             exit;
         }
 
-        $ejemplares = $this->repoEjemplares->findAllAvailable();
+        $ejemplares = $this->repoEjemplares->findAllAvailable($venta->getEjemplares());
 
         if (isset($_POST['actualizar'])) {
             $nombre = $_POST['nombre'];
