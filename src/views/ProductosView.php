@@ -66,7 +66,7 @@ class ProductosView extends BaseView
                                 <td><?= htmlspecialchars($producto->getDescripcion()) ?></td>
                                 <td><?= htmlspecialchars($producto->getCategoria()) ?></td>
                                 <td><?= htmlspecialchars($producto->getStockMinimo()) ?></td>
-                                <td><?= htmlspecialchars($producto->getStockActual()) ?></td>
+                                <td class="<?= $producto->getStockActual() < $producto->getStockMinimo() ? 'table-danger' : '' ?>"><?= htmlspecialchars($producto->getStockActual()) ?></td>
                                 <td><?= $producto->getFechaCreacion() ?></td>
                                 <td><?= $producto->getFechaActualizacion() ?></td>
                                 <?php if ($this->isLogged) { ?>
