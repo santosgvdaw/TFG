@@ -53,7 +53,7 @@ class ActualizarEjemplarView extends BaseView
                 <label for="producto" class="form-label">Producto</label>
                 <select class="form-select" name="producto" id="producto">
                     <?php foreach ($this->productos as $producto) { ?>
-                        <option value="<?= $producto->getId() ?>"><?= $producto->getNombre() ?></option>
+                        <option value="<?= $producto->getId() ?>" <?= $producto->getNombre() == $this->ejemplar->getNombreProducto() ? 'selected' : '' ?> ><?= $producto->getNombre() ?></option>
                     <?php } ?>
                 </select>
             </div>
