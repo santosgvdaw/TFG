@@ -41,22 +41,36 @@ class CrearVentaView extends BaseView
                 <input type="text" class="form-control" name="nombre" id="nombre" />
             </div>
             <input type="hidden" class="form-control" name="numEjemplares" id="numEjemplares" value="1" />
-            <div id="ejemplar0" class="row mb-3 d-none">
-                <label for="ejemplar0" class="form-label">Ejemplar</label>
-                <select class="form-select" name="ejemplar0">
-                    <?php foreach ($this->ejemplares as $ejemplar) { ?>
-                        <option value="<?= $ejemplar->getId() ?>"><?= htmlspecialchars($ejemplar->getId() . ' - ' . $ejemplar->getNombreProducto()) ?></option>
-                    <?php } ?>
-                </select>
-            </div>
-            <div id="ejemplares">
-                <div id="ejemplar1" class="row mb-3">
-                    <label for="ejemplar1" class="form-label">Ejemplar</label>
-                    <select class="form-select" name="ejemplar1">
+            <div id="ejemplar0" class="row mb-3 d-none align-items-end ejemplar">
+                <div class="col">
+                    <label for="ejemplar0" class="form-label">Ejemplar</label>
+                    <select class="form-select" name="ejemplar0">
                         <?php foreach ($this->ejemplares as $ejemplar) { ?>
                             <option value="<?= $ejemplar->getId() ?>"><?= htmlspecialchars($ejemplar->getId() . ' - ' . $ejemplar->getNombreProducto()) ?></option>
                         <?php } ?>
                     </select>
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-danger btn-sm eliminar-ejemplar">
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+            <div id="ejemplares">
+                <div id="ejemplar1" class="row mb-3 align-items-end ejemplar">
+                    <div class="col">
+                        <label for="ejemplar1" class="form-label">Ejemplar</label>
+                        <select class="form-select" name="ejemplar1">
+                            <?php foreach ($this->ejemplares as $ejemplar) { ?>
+                                <option value="<?= $ejemplar->getId() ?>"><?= htmlspecialchars($ejemplar->getId() . ' - ' . $ejemplar->getNombreProducto()) ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-danger btn-sm eliminar-ejemplar">
+                            Eliminar
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="row mb-3 d-flex justify-content-center">
