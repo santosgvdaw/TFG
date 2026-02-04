@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS Ejemplares (
     producto_fk INT NOT NULL,
     ubicacion_fk INT NOT NULL,
     venta_fk INT,
-    precio INT NOT NULL,
+    precio DECIMAL(14, 2) NOT NULL,
     fecha_entrada DATE,
     fecha_actualizacion DATE,
     concurrencia INT,

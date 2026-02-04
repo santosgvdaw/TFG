@@ -60,7 +60,7 @@ class CrearEjemplarView extends BaseView
             </div>
             <div class="row mb-3">
                 <label for="precio" class="form-label">Precio</label>
-                <input type="number" class="form-control" name="precio" id="precio" />
+                <input type="number" step="0.01" class="form-control" name="precio" id="precio" />
             </div>
             <div class="row mb-3">
                 <label for="cantidad" class="form-label">Cantidad</label>
