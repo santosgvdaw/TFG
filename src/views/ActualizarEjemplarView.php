@@ -53,7 +53,7 @@ class ActualizarEjemplarView extends BaseView
                 <label for="producto" class="form-label">Producto</label>
                 <select class="form-select" name="producto" id="producto">
                     <?php foreach ($this->productos as $producto) { ?>
-                        <option value="<?= $producto->getId() ?>"><?= $producto->getNombre() ?></option>
+                        <option value="<?= $producto->getId() ?>" <?= $producto->getNombre() == $this->ejemplar->getNombreProducto() ? 'selected' : '' ?> ><?= $producto->getNombre() ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -67,7 +67,7 @@ class ActualizarEjemplarView extends BaseView
             </div>
             <div class="row mb-3">
                 <label for="precio" class="form-label">Precio</label>
-                <input type="number" class="form-control" name="precio" id="precio" value="<?= htmlspecialchars($this->ejemplar->getPrecio()) ?>" />
+                <input type="number" step="0.01" class="form-control" name="precio" id="precio" value="<?= htmlspecialchars($this->ejemplar->getPrecio()) ?>" />
             </div>
             <div class="row mb-3 d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary col" name="actualizar" style="max-width:130px;">Actualizar ejemplar</button>
