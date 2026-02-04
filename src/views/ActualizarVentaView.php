@@ -50,33 +50,46 @@ class ActualizarVentaView extends BaseView
                 <input type="text" class="form-control" name="nombre" id="nombre" value="<?= htmlspecialchars($this->venta->getNombre()) ?>" />
             </div>
             <input type="hidden" class="form-control" name="numEjemplares" id="numEjemplares" value="<?= count($this->venta->getEjemplares()) ?>" />
-            <div id="ejemplar0" class="row mb-3 d-none">
-                <label for="ejemplar0" class="form-label">Ejemplar</label>
-                <select class="form-select" name="ejemplar0">
-                    <?php foreach ($this->ejemplares as $ejemplar) { ?>
-                        <option value="<?= $ejemplar->getId() ?>"><?= htmlspecialchars($ejemplar->getId() . ' - ' . $ejemplar->getNombreProducto()) ?></option>
-                    <?php } ?>
-                </select>
-            </div>
-            <div id="ejemplares">
-                <?php for ($i=0; $i < count($this->venta->getEjemplares()); $i++) { ?>
-                <?php $ejemplarVenta = $this->venta->getEjemplares()[$i]; ?>
-                    <div id="ejemplar<?= $i+1 ?>" class="row mb-3">
-                    <label for="ejemplar<?= $i+1 ?>" class="form-label">Ejemplar</label>
-                    <select class="form-select" name="ejemplar<?= $i+1 ?>">
+            <div id="ejemplar0" class="row mb-3 d-none align-items-end ejemplar">
+                <div class="col">
+                    <label for="ejemplar0" class="form-label">Ejemplar</label>
+                    <select class="form-select" name="ejemplar0">
                         <?php foreach ($this->ejemplares as $ejemplar) { ?>
-                            <option value="<?= $ejemplar->getId() ?>" <?php
-                                // Si el ejemplar de la venta actual es el ejemplar
-                                if ($ejemplarVenta == $ejemplar->getId()) {
-                                    echo 'selected';
-                                }?> ><?= htmlspecialchars($ejemplar->getId() . ' - ' . $ejemplar->getNombreProducto()) ?></option>
+                            <option value="<?= $ejemplar->getId() ?>"><?= htmlspecialchars($ejemplar->getId() . ' - ' . $ejemplar->getNombreProducto()) ?></option>
                         <?php } ?>
                     </select>
                 </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-danger btn-sm eliminar-ejemplar" title="Eliminar">
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+            <div id="ejemplares">
+                <?php foreach ($this->venta->getEjemplares() as $index => $idEjemplarVenta) { ?>
+                    <?php $id = $index + 1; ?>
+                    <div id="ejemplar<?= $id ?>" class="row mb-3 align-items-end ejemplar">
+                        <div class="col">
+                            <label for="ejemplar<?= $id ?>" class="form-label">Ejemplar</label>
+                            <select class="form-select" name="ejemplar<?= $id ?>">
+                                <?php foreach ($this->ejemplares as $ejemplar) { ?>
+                                    <option value="<?= $ejemplar->getId() ?>"
+                                        <?= $ejemplar->getId() == $idEjemplarVenta ? 'selected' : '' ?>>
+                                        <?= htmlspecialchars($ejemplar->getId() . ' - ' . $ejemplar->getNombreProducto()) ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <button type="button" class="btn btn-danger btn-sm eliminar-ejemplar" title="Eliminar este ejemplar">
+                                Eliminar
+                            </button>
+                        </div>
+                    </div>
                 <?php } ?>
             </div>
             <div class="row mb-3 d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary col" name="actualizar" style="max-width:130px;">Actualizar ejemplar</button>
+                <button type="submit" class="btn btn-primary col" name="actualizar" style="max-width:130px;">Actualizar Venta</button>
             </div>
         </form>
 <?php }
