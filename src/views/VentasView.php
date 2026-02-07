@@ -16,8 +16,9 @@ class VentasView extends BaseView
         return "ventas";
     }
 
-    // El listado de ventas no necesita script de cliente
-    protected function getScript() {}
+    protected function getScript() {
+        return 'listado.js';
+    }
 
     public function setVentas($ventas)
     {
@@ -54,7 +55,7 @@ class VentasView extends BaseView
                             <?php } ?>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="listado">
                         <?php foreach ($this->ventas as $venta) { ?>
                             <tr class="text-center">
                                 <td><?= $venta->getId() ?></td>
