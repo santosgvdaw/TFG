@@ -169,7 +169,13 @@ abstract class BaseView
             <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
             <link href="bootstrap.min.v5.3.8.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
             <link rel="stylesheet" href="styles.css">
+            <?php if(is_string($this->getScript())) { ?>
             <script src="<?= $this->getScript() ?>" defer></script>
+            <?php } elseif(is_array($this->getScript())) { ?>
+                <?php foreach ($this->getScript() as $script) { ?>
+                    <script src="<?= $script ?>" defer></script>
+                <?php } ?>
+            <?php } ?>
         </head>
 
         <body>

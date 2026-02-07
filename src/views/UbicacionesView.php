@@ -16,8 +16,9 @@ class UbicacionesView extends BaseView
         return "ubicaciones";
     }
 
-    // El listado de ubicaciones no necesita script de cliente
-    protected function getScript() {}
+    protected function getScript() {
+        return 'listado.js';
+    }
 
     public function setUbicaciones($ubicaciones)
     {
@@ -54,7 +55,7 @@ class UbicacionesView extends BaseView
                             <?php } ?>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="listado">
                         <?php foreach ($this->ubicaciones as $ubicacion) { ?>
                             <tr class="text-center">
                                 <td><?= $ubicacion->getId() ?></td>

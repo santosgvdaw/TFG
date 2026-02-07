@@ -16,8 +16,9 @@ class UsuarioView extends BaseView
         return "usuarios";
     }
 
-    // El listado de usuarios no necesita script de cliente
-    protected function getScript() {}
+    protected function getScript() {
+        return 'listado.js';
+    }
 
     public function setUsuarios($usuarios)
     {
@@ -42,7 +43,7 @@ class UsuarioView extends BaseView
                             <?php } ?>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="listado">
                         <?php foreach ($this->usuarios as $usuario) { ?>
                             <tr class="text-center">
                                 <td><?= $usuario->getId() ?></td>
