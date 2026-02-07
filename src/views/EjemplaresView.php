@@ -21,7 +21,7 @@ class EjemplaresView extends BaseView
 
     protected function getScript()
     {
-        return "ejemplaresFilter.js";
+        return ["ejemplaresFilter.js", 'listado.js'];
     }
 
     public function setEjemplares($ejemplares)
@@ -101,7 +101,7 @@ class EjemplaresView extends BaseView
                             <?php } ?>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="listado">
                         <?php foreach ($this->ejemplares as $ejemplar) { ?>
                             <tr class="text-center">
                                 <td><?= $ejemplar->getId() ?></td>
