@@ -88,7 +88,7 @@ class EjemplaresView extends BaseView
             </div>
             <div class="row">
                 <table class="table table-striped">
-                    <thead>
+                    <thead class=" sticky-top">
                         <tr class="text-center">
                             <th scope="col">Id</th>
                             <th scope="col">Nombre producto</th>

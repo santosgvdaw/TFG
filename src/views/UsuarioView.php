@@ -29,7 +29,7 @@ class UsuarioView extends BaseView
         <div class="container">
             <div class="row">
                 <table class="table table-striped">
-                    <thead>
+                    <thead class=" sticky-top">
                         <tr class="text-center">
                             <th scope="col">Id</th>
                             <th scope="col">Nombre</th>
