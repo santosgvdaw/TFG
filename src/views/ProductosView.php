@@ -17,7 +17,9 @@ class ProductosView extends BaseView
     }
 
     // El listado de productos no necesita script de cliente
-    protected function getScript() {}
+    protected function getScript() {
+        return "listado.js";
+    }
 
     public function setProductos($productos)
     {
@@ -58,7 +60,7 @@ class ProductosView extends BaseView
                             <?php } ?>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="listado">
                         <?php foreach ($this->productos as $producto) { ?>
                             <tr class="text-center">
                                 <td><?= $producto->getId() ?></td>
