@@ -16,8 +16,9 @@ class CategoriasView extends BaseView
         return "categorias";
     }
 
-    // El listado de categorías no necesita script de cliente
-    protected function getScript() {}
+    protected function getScript() {
+        return 'listado.js';
+    }
 
     public function setCategorias($categorias)
     {
@@ -54,7 +55,7 @@ class CategoriasView extends BaseView
                             <?php } ?>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="listado">
                         <?php foreach ($this->categorias as $categoria) { ?>
                             <tr class="text-center">
                                 <td><?= $categoria->getId() ?></td>
