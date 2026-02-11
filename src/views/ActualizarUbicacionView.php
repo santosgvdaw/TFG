@@ -31,6 +31,7 @@ class ActualizarUbicacionView extends BaseView
     { ?>
         <form id="actualizar" name="actualizar" action="actualizarUbicacion.php" method="POST" style="max-width: 330px;">
             <div id="errores" class="row mb-3">
+                <div id="errorExiste" class="alert alert-danger <?= in_array('errorExiste', $this->error) ? '' : 'd-none' ?>" role="alert">Ya existe una ubicación con ese nombre</div>
                 <div id="errorNombre" class="alert alert-danger <?= in_array('errorNombre', $this->error) ? '' : 'd-none' ?>" role="alert">El nombre es demasiado largo (max. 20 caracteres) o corto (min. 1 caracter)</div>
             </div>
             <input type="hidden" class="form-control" name="id" id="id" value="<?= $this->ubicacion->getId() ?>" />
