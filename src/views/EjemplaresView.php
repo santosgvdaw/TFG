@@ -82,7 +82,7 @@ class EjemplaresView extends BaseView
                         <?php } ?>
                     </select>
 
-                    <button id="resetFilters" type="reset" class="btn btn-secondary" name="limpiar">Limpiar selección</button>
+                    <button id="resetFilters" type="reset" class="btn btn-secondary" name="limpiar">Limpiar filtro</button>
                     <button id="submitFilter" type="submit" class="btn btn-primary" name="filtrar">Filtrar ejemplares</button>
                 </form>
             </div>
@@ -94,6 +94,7 @@ class EjemplaresView extends BaseView
                             <th scope="col">Nombre producto</th>
                             <th scope="col">Precio</th>
                             <th scope="col">Nombre ubicación</th>
+                            <th scope="col">Nombre Categoría</th>
                             <th scope="col">Fecha Entrada</th>
                             <th scope="col">Fecha Actualización</th>
                             <?php if ($this->isLogged) { ?>
@@ -108,6 +109,7 @@ class EjemplaresView extends BaseView
                                 <td><?= htmlspecialchars($ejemplar->getNombreProducto()) ?></td>
                                 <td><?= htmlspecialchars($ejemplar->getPrecio()) ?></td>
                                 <td><?= htmlspecialchars($ejemplar->getNombreUbicacion()) ?></td>
+                                <td><?= htmlspecialchars($ejemplar->getNombreCategoria()) ?></td>
                                 <td><?= $ejemplar->getFechaEntrada() ?></td>
                                 <td><?= $ejemplar->getFechaActualizacion() ?></td>
                                 <?php if ($this->isLogged) { ?>

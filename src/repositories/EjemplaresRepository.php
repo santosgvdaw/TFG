@@ -17,10 +17,11 @@ class EjemplaresRepository
     {
         $this->db->openConnection();
         $res = $this->db->execPrepared(<<<SQL
-        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
+        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, C.nombre AS nombre_categoria, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
         FROM Ejemplares E
         INNER JOIN Productos P ON E.producto_fk = P.id
         INNER JOIN Ubicaciones U ON E.ubicacion_fk = U.id
+        INNER JOIN Categorias C ON P.categoria_fk = C.id
         WHERE E.id = :id AND E.concurrencia = :concurrencia;
         SQL, [':id' => $id, ':concurrencia' => $concurrencia]);
         $this->db->closeConnection();
@@ -36,10 +37,11 @@ class EjemplaresRepository
         $ejemplares = [];
         $this->db->openConnection();
         $res = $this->db->queryAll(<<<SQL
-        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
+        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, C.nombre AS nombre_categoria, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
         FROM Ejemplares E
         INNER JOIN Productos P ON E.producto_fk = P.id
-        INNER JOIN Ubicaciones U ON E.ubicacion_fk = U.id;
+        INNER JOIN Ubicaciones U ON E.ubicacion_fk = U.id
+        INNER JOIN Categorias C ON P.categoria_fk = C.id;
         SQL);
         $this->db->closeConnection();
 
@@ -61,10 +63,11 @@ class EjemplaresRepository
         $filter = empty($moreEjemplares) ? '' : 'OR E.id IN (' . implode(',', $moreEjemplares) . ')';
 
         $res = $this->db->queryAll(<<<SQL
-        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
+        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, C.nombre AS nombre_categoria, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
         FROM Ejemplares E
         INNER JOIN Productos P ON E.producto_fk = P.id
         INNER JOIN Ubicaciones U ON E.ubicacion_fk = U.id
+        INNER JOIN Categorias C ON P.categoria_fk = C.id
         WHERE E.venta_fk IS NULL $filter;
         SQL);
 
@@ -82,10 +85,11 @@ class EjemplaresRepository
         $ejemplares = [];
         $this->db->openConnection();
         $res = $this->db->execAllPrepared(<<<SQL
-        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
+        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, C.nombre AS nombre_categoria, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
         FROM Ejemplares E
         INNER JOIN Productos P ON E.producto_fk = P.id
         INNER JOIN Ubicaciones U ON E.ubicacion_fk = U.id
+        INNER JOIN Categorias C ON P.categoria_fk = C.id
         WHERE E.venta_fk IS NULL
         AND E.ubicacion_fk = :ubicacion
         AND P.categoria_fk = :categoria;
@@ -104,10 +108,11 @@ class EjemplaresRepository
         $ejemplares = [];
         $this->db->openConnection();
         $res = $this->db->execAllPrepared(<<<SQL
-        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
+        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, C.nombre AS nombre_categoria, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
         FROM Ejemplares E
         INNER JOIN Productos P ON E.producto_fk = P.id
         INNER JOIN Ubicaciones U ON E.ubicacion_fk = U.id
+        INNER JOIN Categorias C ON P.categoria_fk = C.id
         WHERE E.venta_fk IS NULL
         AND E.ubicacion_fk = :ubicacion;
         SQL, [':ubicacion' => $ubicacionId]);
@@ -125,10 +130,11 @@ class EjemplaresRepository
         $ejemplares = [];
         $this->db->openConnection();
         $res = $this->db->execAllPrepared(<<<SQL
-        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
+        SELECT E.id, P.nombre AS nombre_producto, E.precio, U.nombre AS nombre_ubicacion, C.nombre AS nombre_categoria, E.fecha_entrada, E.fecha_actualizacion, E.concurrencia
         FROM Ejemplares E
         INNER JOIN Productos P ON E.producto_fk = P.id
         INNER JOIN Ubicaciones U ON E.ubicacion_fk = U.id
+        INNER JOIN Categorias C ON P.categoria_fk = C.id
         WHERE E.venta_fk IS NULL
         AND P.categoria_fk = :categoria;
         SQL, [':categoria' => $categoriaId]);
