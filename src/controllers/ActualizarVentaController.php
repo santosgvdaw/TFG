@@ -6,6 +6,8 @@ session_start();
 
 require __DIR__ . '/../../vendor/autoload.php';
 
+use PDOException;
+
 class ActualizarVentaController
 {
     private $service;
@@ -42,22 +44,28 @@ class ActualizarVentaController
 
         $ejemplares = $this->repoEjemplares->findAllAvailable($venta->getEjemplares());
 
-        if (isset($_POST['actualizar'])) {
-            $nombre = $_POST['nombre'];
-            $numEjemplares = $_POST['numEjemplares'];
-            $ejemplaresVenta = [];
-            for ($i = 1; $i <= $numEjemplares; $i++) {
-                $ejemplaresVenta[] = $_POST["ejemplar{$i}"];
-            }
-            $ejemplares = array_map(fn($e) => $e->getId(), $ejemplares);
+        try {
+            if (isset($_POST['actualizar'])) {
+                $nombre = $_POST['nombre'];
+                $numEjemplares = $_POST['numEjemplares'];
+                $ejemplaresVenta = [];
+                for ($i = 1; $i <= $numEjemplares; $i++) {
+                    $ejemplaresVenta[] = $_POST["ejemplar{$i}"];
+                }
+                $idEjemplares = array_map(fn($e) => $e->getId(), $ejemplares);
 
-            $isValido = $this->service->validar($nombre, $ejemplaresVenta, $ejemplares);
-            if ($isValido) {
-                $this->repo->update($id, $nombre, $ejemplaresVenta, $concurrencia);
-                header('Location: ventas.php');
-                exit;
-            } else { // Si hay errores
-                $this->view->setError($this->service->getErrores());
+                $isValido = $this->service->validar($nombre, $ejemplaresVenta, $idEjemplares);
+                if ($isValido) {
+                    $this->repo->update($id, $nombre, $ejemplaresVenta, $concurrencia);
+                    header('Location: ventas.php');
+                    exit;
+                } else { // Si hay errores
+                    $this->view->setError($this->service->getErrores());
+                }
+            }
+        } catch (PDOException $ex) {
+            if ($ex->getCode() == 23000) {
+                $this->view->setError(['errorExiste']);
             }
         }
 

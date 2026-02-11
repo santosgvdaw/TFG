@@ -37,7 +37,7 @@ class ActualizarProductoView extends BaseView
     { ?>
         <form id="actualizar" name="actualizar" action="actualizarProducto.php" method="POST" style="max-width: 330px;">
             <div id="errores" class="row mb-3">
-                <div id="errorExiste" class="alert alert-danger <?= in_array('errorExiste', $this->error) ? '' : 'd-none' ?>" role="alert">Ya existe una ubicación con ese nombre</div>
+                <div id="errorExiste" class="alert alert-danger <?= in_array('errorExiste', $this->error) ? '' : 'd-none' ?>" role="alert">Ya existe un producto con ese nombre</div>
                 <div id="errorNombre" class="alert alert-danger <?= in_array('errorNombre', $this->error) ? '' : 'd-none' ?>" role="alert">El nombre es demasiado largo (max. 20 caracteres) o corto (min. 1 caracter)</div>
                 <div id="errorDescripcion" class="alert alert-danger <?= in_array('errorDescripcion', $this->error) ? '' : 'd-none' ?>" role="alert">La descripción es demasiado larga (max. 255 caracteres) o corta (min. 1 caracter)</div>
                 <div id="errorCategoria" class="alert alert-danger <?= in_array('errorCategoria', $this->error) ? '' : 'd-none' ?>" role="alert">La categoría seleccionada no existe</div>

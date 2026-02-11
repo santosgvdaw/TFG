@@ -37,6 +37,7 @@ class ActualizarVentaView extends BaseView
     { ?>
         <form id="actualizar" name="actualizar" action="actualizarVenta.php" method="POST" style="max-width: 330px;">
             <div id="errores" class="row mb-3">
+                <div id="errorExiste" class="alert alert-danger <?= in_array('errorExiste', $this->error) ? '' : 'd-none' ?>" role="alert">Ya existe una venta con ese nombre</div>
                 <div id="errorNombre" class="alert alert-danger <?= in_array('errorNombre', $this->error) ? '' : 'd-none' ?>" role="alert">El nombre es demasiado largo (max. 20 caracteres) o corto (min. 1 caracter)</div>
                 <div id="errorProductos" class="alert alert-danger <?= in_array('errorProducto', $this->error) ? '' : 'd-none' ?>" role="alert">Uno o varios producto/s seleccionado/s no existen</div>
             </div>
