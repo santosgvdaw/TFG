@@ -83,7 +83,7 @@ class EjemplaresView extends BaseView
                     </select>
 
                     <button id="resetFilters" type="reset" class="btn btn-secondary" name="limpiar">Limpiar selección</button>
-                    <button type="submit" class="btn btn-primary" name="filtrar">Filtrar ejemplares</button>
+                    <button id="submitFilter" type="submit" class="btn btn-primary" name="filtrar">Filtrar ejemplares</button>
                 </form>
             </div>
             <div class="row">
