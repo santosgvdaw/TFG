@@ -42,9 +42,6 @@ class ActualizarVentaView extends BaseView
             </div>
             <input type="hidden" class="form-control" name="id" id="id" value="<?= $this->venta->getId() ?>" />
             <input type="hidden" class="form-control" name="con" id="con" value="<?= $this->venta->getConcurrencia() ?>" />
-            <div class="row mb-3 d-flex justify-content-center">
-                <button id="btnAddEjemplar" class="btn btn-secondary row mb-3" name="crear" style="max-width:130px;">Añadir Ejemplar</button>
-            </div>
             <div class="row mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" class="form-control" name="nombre" id="nombre" value="<?= htmlspecialchars($this->venta->getNombre()) ?>" />
@@ -87,6 +84,9 @@ class ActualizarVentaView extends BaseView
                         </div>
                     </div>
                 <?php } ?>
+            </div>
+            <div class="row mb-3 d-flex justify-content-center">
+                <button id="btnAddEjemplar" class="btn btn-secondary row mb-3" name="crear" style="max-width:130px;">Añadir Ejemplar</button>
             </div>
             <div class="row mb-3 d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary col" name="actualizar" style="max-width:130px;">Actualizar Venta</button>
