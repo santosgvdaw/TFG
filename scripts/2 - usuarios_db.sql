@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS Roles (
 CREATE TABLE IF NOT EXISTS Usuarios (
     id INT NOT NULL AUTO_INCREMENT,
     rol_fk INT NOT NULL,
-    nombre VARCHAR(20) NOT NULL,
+    nombre VARCHAR(20) UNIQUE NOT NULL,
     correo varchar(64) NOT NULL,
     contrasena varchar(60) NOT NULL, -- Contraseña hasheada con BCRYPT
     fecha_creacion DATE,
