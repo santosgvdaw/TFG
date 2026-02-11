@@ -42,14 +42,10 @@ class ActualizarEjemplarView extends BaseView
     protected function getContent()
     { ?>
         <form id="actualizar" name="actualizar" action="actualizarEjemplar.php" method="POST" style="max-width: 330px;">
-            <div id="errores" class="row mb-3">
-                <div id="errorProducto" class="alert alert-danger <?= in_array('errorProducto', $this->error) ? '' : 'd-none' ?>" role="alert">El producto seleccionado no existe</div>
-                <div id="errorUbicacion" class="alert alert-danger <?= in_array('errorUbicacion', $this->error) ? '' : 'd-none' ?>" role="alert">La Ubicación seleccionada no existe</div>
-                <div id="errorPrecio" class="alert alert-danger <?= in_array('errorPrecio', $this->error) ? '' : 'd-none' ?>" role="alert">El precio no es válido</div>
-            </div>
             <input type="hidden" class="form-control" name="id" id="id" value="<?= $this->ejemplar->getId() ?>" />
             <input type="hidden" class="form-control" name="con" id="con" value="<?= $this->ejemplar->getConcurrencia() ?>" />
             <div class="row mb-3">
+                <div id="errorProducto" class="alert alert-danger <?= in_array('errorProducto', $this->error) ? '' : 'd-none' ?>" role="alert">El producto seleccionado no existe</div>
                 <label for="producto" class="form-label">Producto</label>
                 <select class="form-select" name="producto" id="producto">
                     <?php foreach ($this->productos as $producto) { ?>
@@ -58,6 +54,7 @@ class ActualizarEjemplarView extends BaseView
                 </select>
             </div>
             <div class="row mb-3">
+                <div id="errorUbicacion" class="alert alert-danger <?= in_array('errorUbicacion', $this->error) ? '' : 'd-none' ?>" role="alert">La Ubicación seleccionada no existe</div>
                 <label for="ubicacion" class="form-label">Ubicación</label>
                 <select class="form-select" name="ubicacion" id="ubicacion">
                     <?php foreach ($this->ubicaciones as $ubicacion) { ?>
@@ -66,6 +63,7 @@ class ActualizarEjemplarView extends BaseView
                 </select>
             </div>
             <div class="row mb-3">
+                <div id="errorPrecio" class="alert alert-danger <?= in_array('errorPrecio', $this->error) ? '' : 'd-none' ?>" role="alert">El precio no es válido</div>
                 <label for="precio" class="form-label">Precio</label>
                 <input type="number" step="0.01" class="form-control" name="precio" id="precio" value="<?= htmlspecialchars($this->ejemplar->getPrecio()) ?>" />
             </div>

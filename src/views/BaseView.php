@@ -41,7 +41,7 @@ abstract class BaseView
                         <path d="M12 12l-8 -4.5" />
                         <path d="M16 5.25l-8 4.5" />
                     </svg>
-                    Productos
+                    <div class="d-none d-xl-block">Productos</div>
                 </a>
             </li>
             <li>
@@ -52,7 +52,7 @@ abstract class BaseView
                         <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
                         <path d="M10 12l4 0" />
                     </svg>
-                    Ejemplares
+                    <div class="d-none d-xl-block">Ejemplares</div>
                 </a>
             </li>
             <li>
@@ -62,7 +62,7 @@ abstract class BaseView
                         <path d="M6.331 8h11.339a2 2 0 0 1 1.977 2.304l-1.255 8.152a3 3 0 0 1 -2.966 2.544h-6.852a3 3 0 0 1 -2.965 -2.544l-1.255 -8.152a2 2 0 0 1 1.977 -2.304z" />
                         <path d="M9 11v-5a3 3 0 0 1 6 0v5" />
                     </svg>
-                    Ventas
+                    <div class="d-none d-xl-block">Ventas</div>
                 </a>
             </li>
             <li>
@@ -74,7 +74,7 @@ abstract class BaseView
                         <path d="M4 14h6v6h-6z" />
                         <path d="M17 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
                     </svg>
-                    Categorías
+                    <div class="d-none d-xl-block">Categorías</div>
                 </a>
             </li>
             <li>
@@ -84,7 +84,7 @@ abstract class BaseView
                         <path d="M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
                         <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
                     </svg>
-                    Ubicaciones
+                    <div class="d-none d-xl-block">Ubicaciones</div>
                 </a>
             </li>
             <?php if ($this->isLogged && $this->rol == 'admin') { ?>
@@ -95,7 +95,7 @@ abstract class BaseView
                         <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
                         <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                     </svg>
-                    Usuarios
+                    <div class="d-none d-xl-block">Usuarios</div>
                     </a>
                 </li>
             <?php } ?>
@@ -168,7 +168,6 @@ abstract class BaseView
             <title><?= $this->getTitle() ?></title>
             <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
             <link href="bootstrap.min.v5.3.8.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-            <link rel="stylesheet" href="styles.css">
             <?php if(is_string($this->getScript())) { ?>
             <script src="<?= $this->getScript() ?>" defer></script>
             <?php } elseif(is_array($this->getScript())) { ?>
@@ -179,7 +178,7 @@ abstract class BaseView
         </head>
 
         <body>
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between text-center py-3 mb-5 border-bottom"><?php $this->getHeader(); ?></header>
+            <header class="d-flex flex-wrap align-items-center justify-content-center text-center py-3 mb-5 border-bottom"><?php $this->getHeader(); ?></header>
             <div class="container">
                 <div class="mb-3 d-flex justify-content-center"><?php $this->getContent() ?></div>
             </div>

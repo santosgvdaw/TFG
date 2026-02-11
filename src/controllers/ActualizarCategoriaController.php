@@ -6,6 +6,8 @@ session_start();
 
 require __DIR__ . '/../../vendor/autoload.php';
 
+use PDOException;
+
 class ActualizarCategoriaController
 {
     private $service;
@@ -42,19 +44,24 @@ class ActualizarCategoriaController
             exit;
         }
         
-        if (isset($_POST['actualizar'])) {
-            $nombre = $_POST['nombre'];
-            
-            $isValido = $this->service->validar($nombre);
-            if ($isValido) {
-                $this->repo->update($categoria->getId(), $nombre, $concurrencia);
-                header('Location: categorias.php');
-                exit;
-            } else { // Si hay errores
-                $this->view->setError($this->service->getErrores());
+        try {
+            if (isset($_POST['actualizar'])) {
+                $nombre = $_POST['nombre'];
+                
+                $isValido = $this->service->validar($nombre);
+                if ($isValido) {
+                    $this->repo->update($categoria->getId(), $nombre, $concurrencia);
+                    header('Location: categorias.php');
+                    exit;
+                } else { // Si hay errores
+                    $this->view->setError($this->service->getErrores());
+                }
+            }
+        } catch (PDOException $ex) {
+            if ($ex->getCode() == 23000) {
+                $this->view->setError(['errorExiste']);
             }
         }
-
 
         $this->view->setCategoria($categoria);
         $this->view->render();

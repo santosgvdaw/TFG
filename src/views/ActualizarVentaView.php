@@ -37,15 +37,12 @@ class ActualizarVentaView extends BaseView
     { ?>
         <form id="actualizar" name="actualizar" action="actualizarVenta.php" method="POST" style="max-width: 330px;">
             <div id="errores" class="row mb-3">
-                <div id="errorNombre" class="alert alert-danger <?= in_array('errorNombre', $this->error) ? '' : 'd-none' ?>" role="alert">El nombre es demasiado largo (max. 20 caracteres) o corto (min. 1 caracter)</div>
-                <div id="errorProductos" class="alert alert-danger <?= in_array('errorProducto', $this->error) ? '' : 'd-none' ?>" role="alert">Uno o varios producto/s seleccionado/s no existen</div>
+                <div id="errorExiste" class="alert alert-danger <?= in_array('errorExiste', $this->error) ? '' : 'd-none' ?>" role="alert">Ya existe una venta con ese nombre</div>
             </div>
             <input type="hidden" class="form-control" name="id" id="id" value="<?= $this->venta->getId() ?>" />
             <input type="hidden" class="form-control" name="con" id="con" value="<?= $this->venta->getConcurrencia() ?>" />
-            <div class="row mb-3 d-flex justify-content-center">
-                <button id="btnAddEjemplar" class="btn btn-secondary row mb-3" name="crear" style="max-width:130px;">Añadir Ejemplar</button>
-            </div>
             <div class="row mb-3">
+                <div id="errorNombre" class="alert alert-danger <?= in_array('errorNombre', $this->error) ? '' : 'd-none' ?>" role="alert">El nombre es demasiado largo (max. 20 caracteres) o corto (min. 1 caracter)</div>
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" class="form-control" name="nombre" id="nombre" value="<?= htmlspecialchars($this->venta->getNombre()) ?>" />
             </div>
@@ -66,6 +63,7 @@ class ActualizarVentaView extends BaseView
                 </div>
             </div>
             <div id="ejemplares">
+                <div id="errorProductos" class="alert alert-danger <?= in_array('errorProducto', $this->error) ? '' : 'd-none' ?>" role="alert">Uno o varios ejemplar/es seleccionado/s no existen</div>
                 <?php foreach ($this->venta->getEjemplares() as $index => $idEjemplarVenta) { ?>
                     <?php $id = $index + 1; ?>
                     <div id="ejemplar<?= $id ?>" class="row mb-3 align-items-end ejemplar">
@@ -87,6 +85,9 @@ class ActualizarVentaView extends BaseView
                         </div>
                     </div>
                 <?php } ?>
+            </div>
+            <div class="row mb-3 d-flex justify-content-center">
+                <button id="btnAddEjemplar" class="btn btn-secondary row mb-3" name="crear" style="max-width:130px;">Añadir Ejemplar</button>
             </div>
             <div class="row mb-3 d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary col" name="actualizar" style="max-width:130px;">Actualizar Venta</button>

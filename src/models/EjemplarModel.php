@@ -7,6 +7,7 @@ class EjemplarModel
     private $id;
     private $nombreProducto;
     private $nombreUbicacion;
+    private $nombreCategoria;
     private $precio;
     private $fechaEntrada;
     private $fechaActualizacion;
@@ -17,6 +18,7 @@ class EjemplarModel
         $this->id = $data["id"];
         $this->nombreProducto = $data["nombre_producto"];
         $this->nombreUbicacion = $data["nombre_ubicacion"];
+        $this->nombreCategoria = $data["nombre_categoria"];
         $this->precio = $data["precio"];
         $this->fechaEntrada = $data["fecha_entrada"];
         $this->fechaActualizacion = $data["fecha_actualizacion"];
@@ -36,6 +38,11 @@ class EjemplarModel
     public function getNombreUbicacion()
     {
         return $this->nombreUbicacion;
+    }
+
+    public function getNombreCategoria()
+    {
+        return $this->nombreCategoria;
     }
 
     public function getPrecio()

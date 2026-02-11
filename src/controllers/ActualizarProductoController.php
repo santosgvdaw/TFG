@@ -6,6 +6,8 @@ session_start();
 
 require __DIR__ . '/../../vendor/autoload.php';
 
+use PDOException;
+
 class ActualizarProductoController
 {
     private $service;
@@ -43,19 +45,25 @@ class ActualizarProductoController
             exit;
         }
 
-        if (isset($_POST['actualizar'])) {
-            $nombre = $_POST['nombre'];
-            $descripcion = $_POST['descripcion'];
-            $categoriaId = $_POST['categoria'];
-            $stockMinimo = $_POST['stockMinimo'];
+        try {
+            if (isset($_POST['actualizar'])) {
+                $nombre = $_POST['nombre'];
+                $descripcion = $_POST['descripcion'];
+                $categoriaId = $_POST['categoria'];
+                $stockMinimo = $_POST['stockMinimo'];
 
-            $isValido = $this->service->validar($categoriaId, $categorias, $nombre, $descripcion, $stockMinimo);
-            if ($isValido) {
-                $this->repo->update($producto->getId(), $nombre, $descripcion, $categoriaId, $stockMinimo, $concurrencia);
-                header('Location: productos.php');
-                exit;
-            } else { // Si hay errores
-                $this->view->setError($this->service->getErrores());
+                $isValido = $this->service->validar($categoriaId, $categorias, $nombre, $descripcion, $stockMinimo);
+                if ($isValido) {
+                    $this->repo->update($producto->getId(), $nombre, $descripcion, $categoriaId, $stockMinimo, $concurrencia);
+                    header('Location: productos.php');
+                    exit;
+                } else { // Si hay errores
+                    $this->view->setError($this->service->getErrores());
+                }
+            }
+        } catch (PDOException $ex) {
+            if ($ex->getCode() == 23000) {
+                $this->view->setError(['errorExiste']);
             }
         }
 

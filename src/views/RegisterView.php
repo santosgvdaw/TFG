@@ -26,10 +26,10 @@ class RegisterView extends BaseView
     { ?>
         <form id="register" name="register" action="register.php" method="POST" style="max-width: 330px;">
             <div id="errores" class="row mb-3">
-                <div id="errorNombre" class="alert alert-danger <?= in_array('errorNombre', $this->error) ? '' : 'd-none' ?>" role="alert">El nombre es demasiado largo (max. 20 caracteres) o corto (min. 1 caracter)</div>
-                <div id="errorEmail" class="alert alert-danger <?= in_array('errorEmail', $this->error) ? '' : 'd-none' ?>" role="alert">El correo no es válido</div>
+                <div id="errorExiste" class="alert alert-danger <?= in_array('errorExiste', $this->error) ? '' : 'd-none' ?>" role="alert">Ya existe un usuario con ese nombre</div>
             </div>
             <div class="row mb-3">
+                <div id="errorNombre" class="alert alert-danger <?= in_array('errorNombre', $this->error) ? '' : 'd-none' ?>" role="alert">El nombre es demasiado largo (max. 20 caracteres) o corto (min. 1 caracter)</div>
                 <label for="userName" class="form-label">Usuario</label>
                 <input type="text" class="form-control" name="userName" id="userName" />
             </div>
@@ -38,6 +38,7 @@ class RegisterView extends BaseView
                 <input type="password" class="form-control" name="password" id="password" />
             </div>
             <div class="row mb-3">
+                <div id="errorEmail" class="alert alert-danger <?= in_array('errorEmail', $this->error) ? '' : 'd-none' ?>" role="alert">El correo no es válido</div>
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" name="email" id="email" />
             </div>

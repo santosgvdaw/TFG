@@ -6,6 +6,8 @@ session_start();
 
 require __DIR__ . '/../../vendor/autoload.php';
 
+use PDOException;
+
 class CrearCategoriaController
 {
     private $service;
@@ -33,16 +35,22 @@ class CrearCategoriaController
         $this->view->setIsLogged(isset($_SESSION['isLogged']));
         $this->view->setRol($_SESSION['rol']);
 
-        if (isset($_POST['crear'])) {
-            $nombre = $_POST['nombre'];
+        try {
+            if (isset($_POST['crear'])) {
+                $nombre = $_POST['nombre'];
 
-            $isValido = $this->service->validar($nombre);
-            if ($isValido) {
-                $this->repo->save($nombre);
-                header('Location: categorias.php');
-                exit;
-            } else { // Si hay errores
-                $this->view->setError($this->service->getErrores());
+                $isValido = $this->service->validar($nombre);
+                if ($isValido) {
+                    $this->repo->save($nombre);
+                    header('Location: categorias.php');
+                    exit;
+                } else { // Si hay errores
+                    $this->view->setError($this->service->getErrores());
+                }
+            }
+        } catch (PDOException $ex) {
+            if ($ex->getCode() == 23000) {
+                $this->view->setError(['errorExiste']);
             }
         }
 

@@ -6,6 +6,8 @@ session_start();
 
 require __DIR__ . '/../../vendor/autoload.php';
 
+use PDOException;
+
 class CrearProductoController
 {
     private $service;
@@ -34,19 +36,25 @@ class CrearProductoController
         $categorias = $this->repoCategorias->findAll();
         $this->view->setCategorias($categorias);
 
-        if (isset($_POST['crear'])) {
-            $nombre = $_POST['nombre'];
-            $descripcion = $_POST['descripcion'];
-            $categoria = $_POST['categoria'];
-            $stockMinimo = $_POST['stockMinimo'];
+        try {
+            if (isset($_POST['crear'])) {
+                $nombre = $_POST['nombre'];
+                $descripcion = $_POST['descripcion'];
+                $categoria = $_POST['categoria'];
+                $stockMinimo = $_POST['stockMinimo'];
 
-            $isValido = $this->service->validar($categoria, $categorias, $nombre, $descripcion, $stockMinimo);
-            if ($isValido) {
-                $this->repo->save($nombre, $descripcion, $categoria, $stockMinimo);
-                header('Location: productos.php');
-                exit;
-            } else { // Si hay errores
-                $this->view->setError($this->service->getErrores());
+                $isValido = $this->service->validar($categoria, $categorias, $nombre, $descripcion, $stockMinimo);
+                if ($isValido) {
+                    $this->repo->save($nombre, $descripcion, $categoria, $stockMinimo);
+                    header('Location: productos.php');
+                    exit;
+                } else { // Si hay errores
+                    $this->view->setError($this->service->getErrores());
+                }
+            }
+        } catch (PDOException $ex) {
+            if ($ex->getCode() == 23000) {
+                $this->view->setError(['errorExiste']);
             }
         }
 

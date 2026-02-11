@@ -80,8 +80,10 @@ class VentasRepository
             $this->db->commit();
         } catch (\PDOException $e) {
             $this->db->rollBack();
+            throw $e;
+        } finally {
+            $this->db->closeConnection();
         }
-        $this->db->closeConnection();
     }
 
     public function update($id, $nombre, $ejemplaresVenta, $concurrencia)
@@ -111,8 +113,10 @@ class VentasRepository
             $this->db->commit();
         } catch (\PDOException $e) {
             $this->db->rollBack();
+            throw $e;
+        } finally {
+            $this->db->closeConnection();
         }
-        $this->db->closeConnection();
     }
 
     public function delete($id, $concurrencia)
