@@ -9,7 +9,7 @@ use App\Repositories\UsuariosRepository;
 use App\Services\UsuariosService;
 use App\Views\ActualizarUsuarioView;
 
-$config = new Config();
+$config = new Config('USUARIOS');
 $db = new Database($config);
 $repo = new UsuariosRepository($db);
 $service = new UsuariosService();

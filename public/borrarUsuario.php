@@ -7,7 +7,7 @@ use App\Models\Config;
 use App\Models\Database;
 use App\Repositories\UsuariosRepository;
 
-$config = new Config();
+$config = new Config('USUARIOS');
 $db = new Database($config);
 $repo = new UsuariosRepository($db);
 $controller = new BorrarUsuarioController($repo);
